@@ -1,0 +1,11 @@
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\bin\Debug\FitnessClubManagementSystem.exe.config
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\bin\Debug\FitnessClubManagementSystem.exe
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\bin\Debug\FitnessClubManagementSystem.pdb
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\obj\Debug\FitnessClubManagementSystem.csproj.AssemblyReference.cache
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\obj\Debug\FitnessClubManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\obj\Debug\FitnessClubManagementSystem.exe
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\obj\Debug\FitnessClubManagementSystem.pdb
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\bin\Debug\Data\ACTIVITIES.txt
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\bin\Debug\Data\BOOKINGS.txt
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\bin\Debug\Data\MEMBERS.txt
+C:\Users\Ruaa\source\repos\FitnessClubManagementSystem\FitnessClubManagementSystem\bin\Debug\Data\TRAINERS.txt

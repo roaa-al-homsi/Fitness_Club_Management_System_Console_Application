@@ -1,0 +1,7 @@
+1;Ali Hasan;ali.hasan@example.com;2026-01-10;STANDARD;0;0
+2;Dana Youssef;dana.youssef@example.com;2026-02-15;STANDARD;3;0
+3;Karim Adel;karim.adel@example.com;2026-01-20;PREMIUM;true;2
+4;Lina Fares;lina.fares@example.com;2026-03-01;PREMIUM;false;0
+5;Rana Saeed;rana.saeed@example.com;2026-03-05;STANDARD;0;0
+6;Roaa Homsi;roaa@gmail.com;12/10/2026;STANDARD;2;0
+7;Ahmad Homsi;ahmad@gmail.com;12/10/2026;PREMIUM;False;5
