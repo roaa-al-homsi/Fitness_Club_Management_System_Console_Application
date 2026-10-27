@@ -18,18 +18,18 @@ namespace FitnessClubManagementSystem.Lib
                 return false;
         }
 
-
-       public static int ReadNumberBetween(int From, int To, string ErrorMessage = "Invalide Number, Enter again\n")
+        public static int ReadNumberBetween(int From, int To, string ErrorMessage = "Invalid Number, Enter again\n")
         {
-            int Number=0;
-            while (!int.TryParse(Console.ReadLine(), out Number) || !IsNumberBetween(Number, From, To))
+            int Number = 0;
+
+            while (!int.TryParse(Console.ReadLine(), out Number)
+                   || !IsNumberBetween(Number, From, To))
             {
-               Console.WriteLine(ErrorMessage) ;
-               Number = int.Parse(Console.ReadLine());
+                Console.WriteLine(ErrorMessage);
             }
+
             return Number;
         }
-  
 
 
     }

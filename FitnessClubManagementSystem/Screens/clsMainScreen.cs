@@ -24,7 +24,7 @@ namespace FitnessClubManagementSystem.Screens
         static short _ReadMainMenuOption()
         {
             short Choice = 0;
-            Console.WriteLine($"{" ",-37}Please Chose What Do You Want To Do [1 To 11]?");
+            Console.WriteLine($"{" ",-37}Please Chose What Do You Want To Do [1 To 12]?");
 
             Choice = ((short)clsInputValidate.ReadNumberBetween(1, 12));
             return Choice;
@@ -101,10 +101,10 @@ namespace FitnessClubManagementSystem.Screens
         {
 
         }
-        static void _FindMember()
+        static void _FindMemberById()
         {
             _DrawHeaderScreen("Fitness Club Management System", "FIND A MEMBER Screen");
-            FitnessClubSystem.FindMember();
+            FitnessClubSystem.FindMemberById();
         }
         static void _FindActivity()
         {
@@ -163,7 +163,7 @@ namespace FitnessClubManagementSystem.Screens
                     break;
                 case 5:
                      Console.Clear();
-                    _FindMember();
+                    _FindMemberById();
                     _GoBackToMainMenu();
                     break;
                 case 6:

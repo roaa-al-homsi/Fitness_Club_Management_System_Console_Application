@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -149,10 +150,48 @@ namespace FitnessClubManagementSystem.Core
 
         }
 
-        public static Member FindMember()
+
+        static Member _FindMember(int id)//Find Member By Id
         {
+            for (int i = 0; i <= NumberMembersInArray - 1; i++)
+            {
+                if (Members[i].Id == id)
+                {
+                    return Members[i];
+
+                }
+            }
+
             return null;
         }
+      
+        static int _ReadIdMember()
+        {
+            Console.WriteLine($"Please, Enter Id member : ");
+            int id = 0;
+            while (!int.TryParse(Console.ReadLine(), out id))
+            {
+                Console.WriteLine("Enter correct number please..., try again: ");
+                Console.WriteLine($"Please, Enter Id member : ");
+            }
+            return id;
+        }
+        public static void FindMemberById ()
+        {
+            Member member = _FindMember(_ReadIdMember());
+         
+            if(member == null )
+            {
+              Console.WriteLine($"There is no exist member with this Id ");
+                return;
+            }
+            //Here member is exist and fulling .
+            member.PrintInfo();
+        }
+        
+
+
+
 
     }
 }
