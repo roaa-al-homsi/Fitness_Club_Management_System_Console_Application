@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace FitnessClubManagementSystem.Screens
 {
-    public  class clsMainScreen
+    public class clsMainScreen
     {
         enum enMainMenuOptions
         {
-            AllMembers=1, AllActivity=2, AllTrainers=3,
-            AllBookings=4, FindMember=5, FindActivity=6, 
-            AddMember=7, AddActivity=8,AddTrainer=9,
-            AddBooking=10,ShowProjectedMonthlyRevenue=11,
-            Exit=12
+            AllMembers = 1, AllActivity = 2, AllTrainers = 3,
+            AllBookings = 4, FindMember = 5, FindActivity = 6,
+            AddMember = 7, AddActivity = 8, AddTrainer = 9,
+            AddBooking = 10, ShowProjectedMonthlyRevenue = 11,
+            Exit = 12
         }
-        
+
         static short _ReadMainMenuOption()
         {
             short Choice = 0;
@@ -34,7 +34,7 @@ namespace FitnessClubManagementSystem.Screens
         {
             Console.WriteLine("\nPress any key to go main menu....");
             Console.ReadKey();
-             ShowMainMenu();
+            ShowMainMenu();
         }
         static void _DrawHeaderScreen(string Title, string SubTitle = " ")
         {
@@ -52,9 +52,9 @@ namespace FitnessClubManagementSystem.Screens
         }
 
 
-       public static void ShowMainMenu()
+        public static void ShowMainMenu()
         {
-           FitnessClubSystem.LoadingDataApplication();
+            FitnessClubSystem.LoadingDataApplication();
 
 
             Console.Clear();
@@ -85,7 +85,7 @@ namespace FitnessClubManagementSystem.Screens
         static void _ShowAllMembers()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL MEMBER SCREEN");
-            FitnessClubSystem.ShowAllMembers(); 
+            FitnessClubSystem.ShowAllMembers();
 
         }
         static void _ShowAllActivity()
@@ -96,7 +96,8 @@ namespace FitnessClubManagementSystem.Screens
 
         static void _ShowAllTrainers()
         {
-
+            _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL TRAINERS SCREEN");
+            FitnessClubSystem.ShowAllTrainers();
         }
         static void _ShowAllBookings()
         {
@@ -139,7 +140,7 @@ namespace FitnessClubManagementSystem.Screens
 
         }
 
-        static void _PerformMainMenuOptions( short Choice)
+        static void _PerformMainMenuOptions(short Choice)
         {
             switch (Choice)
             {
@@ -155,47 +156,47 @@ namespace FitnessClubManagementSystem.Screens
                     _GoBackToMainMenu();
                     break;
                 case 3:
-                     Console.Clear();
+                    Console.Clear();
                     _ShowAllTrainers();
                     _GoBackToMainMenu();
                     break;
                 case 4:
-                     Console.Clear();
+                    Console.Clear();
                     _ShowAllBookings();
                     _GoBackToMainMenu();
                     break;
                 case 5:
-                     Console.Clear();
+                    Console.Clear();
                     _FindMemberById();
                     _GoBackToMainMenu();
                     break;
                 case 6:
-                     Console.Clear();
+                    Console.Clear();
                     _FindActivityById();
                     _GoBackToMainMenu();
                     break;
                 case 7:
-                     Console.Clear();
+                    Console.Clear();
                     _AddMember();
                     _GoBackToMainMenu();
                     break;
                 case 8:
-                     Console.Clear();
+                    Console.Clear();
                     _AddActivity();
                     _GoBackToMainMenu();
                     break;
                 case 9:
-                     Console.Clear();
+                    Console.Clear();
                     _AddTrainer();
                     _GoBackToMainMenu();
                     break;
                 case 10:
-                     Console.Clear();
+                    Console.Clear();
                     _AddBooking();
                     _GoBackToMainMenu();
                     break;
                 case 11:
-                     Console.Clear();
+                    Console.Clear();
                     _ShowProjectedMonthlyRevenue();
                     _GoBackToMainMenu();
                     break;

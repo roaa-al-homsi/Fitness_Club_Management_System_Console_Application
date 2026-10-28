@@ -26,7 +26,7 @@ namespace FitnessClubManagementSystem.Core
         public void PrintInfo()
         {
 
-            Console.Write($"ID: {Id,-3} | " + $"Name: {Name,-20} | " + $"Specialty: {Specialty,-20} min | " + $"Salary: {Salary,-3}");
+            Console.Write($"ID: {Id,-3} | " + $"Name: {Name,-20} | " + $"Specialty: {Specialty,-30} | " + $"Salary: {Salary,-3}");
 
         }
 

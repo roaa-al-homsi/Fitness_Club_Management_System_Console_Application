@@ -21,6 +21,10 @@ namespace FitnessClubManagementSystem.Core
         public static int NumberActivityInArray = 0;//to detect how many member in array activities because size of array is 50 but we don't use all this capacity.
         public static Activity[] Activities = new Activity[MaxActivity];//to storing all activities that exist in file. 
 
+        public const int MaxTrainers = 50;
+        public static int NumberTrainersInArray = 0;
+        public static Trainer[] Trainers = new Trainer[MaxTrainers];
+        
 
         
         
@@ -30,9 +34,10 @@ namespace FitnessClubManagementSystem.Core
             Members = FileManager.LoadDataFromFileToArrayMembers();
 
             //in method LoadDataFromFileToArrayActivities it's load all activities from file to activites array an update to NumberActivitiesInArray.
-
             Activities = FileManager.LoadDataFromFileToArrayActivities();
 
+            //in method LoadDataFromFileToArrayTrainers it's load all Trainers from file to Trainers array an update to NumberTrainersInArray
+            Trainers = FileManager.LoadDataFromFileToArrayTrainers();
         }
 
         /* Member */
@@ -207,7 +212,7 @@ namespace FitnessClubManagementSystem.Core
 
         /* Activity */
 
-        /* View Activites */
+       
         public static void ShowAllActivity()
         {
             for (int i = 0; i < NumberActivityInArray; i++)
@@ -220,7 +225,7 @@ namespace FitnessClubManagementSystem.Core
             Console.WriteLine("                                       TOTAL ACTIVITY IN SYSTEM: " + FitnessClubSystem.NumberActivityInArray);
 
         }
-        /* Add Activity */
+       
         static Activity _ReadInfoNewActivity()
         {
             string type, name, instructorName, difficultyLevel = "";
@@ -326,7 +331,6 @@ namespace FitnessClubManagementSystem.Core
             }
         }
 
-        /* Find Activity */
         static int _ReadIdActivity()
         {
             Console.WriteLine($"Please, Enter Id activity : ");
@@ -361,6 +365,20 @@ namespace FitnessClubManagementSystem.Core
             activity.PrintInfo();
         }
 
+        /*TRAINERS*/
+
+        public static void ShowAllTrainers()
+        {
+            for (int i = 0; i < NumberTrainersInArray; i++)
+            {
+                Trainers[i].PrintInfo();
+                Console.WriteLine(" ");
+
+            }
+            Console.WriteLine("\n                                     **************************************");
+            Console.WriteLine("                                       TOTAL TRAINERS IN SYSTEM: " + FitnessClubSystem.NumberTrainersInArray);
+
+        }
 
 
     }

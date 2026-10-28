@@ -12,9 +12,10 @@ namespace FitnessClubManagementSystem.ManagementSystem
 {
     public static class FileManager
     {
-        public const string FileNameMembers = @"Data\MEMBERS.txt";
-        public const string FileNameActivities = @"Data\ACTIVITIES.txt";
-        
+        const string FileNameMembers = @"Data\MEMBERS.txt";
+        const string FileNameActivities = @"Data\ACTIVITIES.txt";
+        const string FileNameTrainers = @"Data\TRAINERS.txt";
+
         /* Member */
         static Member _ConvertStLineToMemberObject(string stLine, char seperatore = ';')
         {
@@ -34,7 +35,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
         public static string ConvertMemberObjectToStLine(Member member, string seperator = ";")
         {
             string textObjectMember = " ";
-            textObjectMember  = member.Id.ToString()+ seperator;
+            textObjectMember = member.Id.ToString() + seperator;
             textObjectMember += member.Name + seperator;
             textObjectMember += member.Email + seperator;
             textObjectMember += member.JoinDate.ToShortDateString() + seperator;
@@ -45,7 +46,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 StandardMember standardMember = (StandardMember)member;
                 type = "STANDARD";
                 textObjectMember += type + seperator;
-                textObjectMember += standardMember.FreezeDaysUsed.ToString()+seperator+"0";
+                textObjectMember += standardMember.FreezeDaysUsed.ToString() + seperator + "0";
             }
             else if (member is PremiumMember)
             {
@@ -56,13 +57,13 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 textObjectMember += textHasPersonalTrainer + seperator;
                 textObjectMember += premiumMember.GuestPasses.ToString();
             }
-          return textObjectMember;
+            return textObjectMember;
         }
-        
+
         public static Member[] LoadDataFromFileToArrayMembers()
         {
             StreamReader fr = null;
-            Member[] localMembers = new Member[FitnessClubSystem.MaxMembers] ; 
+            Member[] localMembers = new Member[FitnessClubSystem.MaxMembers];
             try
             {
                 fr = new StreamReader(FileNameMembers);
@@ -97,14 +98,14 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             return localMembers;
         }
-       
+
         public static bool SaveMember(string memberRecord)//Add member record to file.
         {
             StreamWriter fw = null;
 
             try
             {
-               // Console.WriteLine("Save path: " + Path.GetFullPath(FileNameMembers));
+                // Console.WriteLine("Save path: " + Path.GetFullPath(FileNameMembers));
 
                 fw = new StreamWriter(FileNameMembers, true);
 
@@ -128,7 +129,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             {
                 case "GROUP":
                     return new GroupClass(Convert.ToInt32(lineInActivityFile[0]), lineInActivityFile[1], Convert.ToInt32(lineInActivityFile[2]), Convert.ToInt32(lineInActivityFile[3]), lineInActivityFile[5], lineInActivityFile[6]);
-                
+
                 case "PT":
                     return new PersonalTrainingSession(Convert.ToInt32(lineInActivityFile[0]), lineInActivityFile[1], Convert.ToInt32(lineInActivityFile[2]), Convert.ToInt32(lineInActivityFile[3]), Convert.ToInt32(lineInActivityFile[5]), Convert.ToDouble(lineInActivityFile[6]));
                 default:
@@ -182,19 +183,19 @@ namespace FitnessClubManagementSystem.ManagementSystem
         public static string ConvertActivityObjectToStLine(Activity activity, string seperator = ";")
         {
             string activityLine = "";
-            activityLine = activity.Id.ToString()+ seperator;
+            activityLine = activity.Id.ToString() + seperator;
             activityLine += activity.Name + seperator;
             activityLine += activity.DurationMinutes.ToString() + seperator;
             activityLine += activity.Capacity.ToString() + seperator;
-            
-        
+
+
             if (activity is GroupClass)
             {
                 GroupClass groupClass = (GroupClass)activity;
                 activityLine += "GROUP" + seperator;
                 activityLine += groupClass.InstructorName + seperator;
-                activityLine += groupClass.DifficultyLevel=="beg"? "Beginner" : "Advanced";
-                
+                activityLine += groupClass.DifficultyLevel == "beg" ? "Beginner" : "Advanced";
+
                 return activityLine;
             }
             else if (activity is PersonalTrainingSession)
@@ -231,6 +232,60 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 return false;
             }
         }
+
+        /* Trainers */
+        static Trainer _ConvertStLineToTrainerObject(string stLine, char seperatore = ';')
+        {
+            string[] lineInTrainersFile = stLine.Split(seperatore);
+            return new Trainer(Convert.ToInt32(lineInTrainersFile[0]), lineInTrainersFile[1], lineInTrainersFile[2], Convert.ToDouble(lineInTrainersFile[3]));
+        }
+
+        public static Trainer[] LoadDataFromFileToArrayTrainers()
+        {
+            StreamReader fr = null;
+
+            Trainer[] localTrainers = new Trainer[FitnessClubSystem.MaxTrainers];
+
+            try
+            {
+                fr = new StreamReader(FileNameTrainers);
+
+                string line = fr.ReadLine();
+
+                FitnessClubSystem.NumberTrainersInArray = 0;
+
+                while (line != null)
+                {
+                    if (FitnessClubSystem.NumberTrainersInArray >= FitnessClubSystem.MaxTrainers)
+                    {
+                        break;
+                    }
+
+                    Trainer trainer = _ConvertStLineToTrainerObject(line);
+
+                    localTrainers[FitnessClubSystem.NumberTrainersInArray] = trainer;
+
+                    FitnessClubSystem.NumberTrainersInArray++;
+
+                    line = fr.ReadLine();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (fr != null)
+                {
+                    fr.Close();
+                }
+            }
+
+            return localTrainers;
+        }
+
+
 
     }
 }
