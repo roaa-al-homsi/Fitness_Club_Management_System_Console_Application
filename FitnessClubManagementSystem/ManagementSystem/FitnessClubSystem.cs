@@ -100,9 +100,6 @@ namespace FitnessClubManagementSystem.Core
             Console.WriteLine("Enter member email : ");
             email = Console.ReadLine();
 
-            //Console.WriteLine("Enter join date for member : ");
-            //joinDate = Convert.ToDateTime( Console.ReadLine());
-
             Console.WriteLine("Enter join date for member (dd/MM/yyyy): ");
             string inputDate = Console.ReadLine();
 
@@ -112,31 +109,35 @@ namespace FitnessClubManagementSystem.Core
                 inputDate = Console.ReadLine();
             }
 
-            if (type== "STANDARD")
+            switch (type)
             {
-                Console.WriteLine("Enter number freeze days used : ");
-                freezeDaysUsed = int.Parse(Console.ReadLine());
-              
-                StandardMember standardMember = new StandardMember(newId,name, email,joinDate,freezeDaysUsed);
-                return standardMember;
+                case "STANDARD":
 
-            }
-            else if (type== "PREMIUM")
-            {
-                Console.WriteLine("Has personal training? [Yes Or No]");
-                string textHasPersonalTraining = Console.ReadLine();
+                     Console.WriteLine("Enter number freeze days used : ");
+                     freezeDaysUsed = int.Parse(Console.ReadLine());
+                     
+                     StandardMember standardMember = new StandardMember(newId,name, email,joinDate,freezeDaysUsed);
+                    
+                     return standardMember;
 
-                hasPersonalTrainer = textHasPersonalTraining == "Yes" || textHasPersonalTraining == "yes" ? true : false;
+                case "PREMIUM":
+                    Console.WriteLine("Has personal training? [Yes Or No]");
+                    string textHasPersonalTraining = Console.ReadLine();
 
-                Console.WriteLine("Enter number guest passes: ");
-                guestPasses = int.Parse(Console.ReadLine());
+                    hasPersonalTrainer = textHasPersonalTraining == "Yes" || textHasPersonalTraining == "yes" ? true : false;
+
+                    Console.WriteLine("Enter number guest passes: ");
+                    guestPasses = int.Parse(Console.ReadLine());
 
 
-                PremiumMember premiumMember = new PremiumMember(newId, name, email, joinDate,hasPersonalTrainer,guestPasses);
-               
-                return premiumMember;
-            }
-            return null;
+                    PremiumMember premiumMember = new PremiumMember(newId, name, email, joinDate, hasPersonalTrainer, guestPasses);
+
+                    return premiumMember;
+
+                default:
+
+                    return null;
+            } 
         }
         
         public static void  AddMember()
@@ -149,6 +150,11 @@ namespace FitnessClubManagementSystem.Core
 
 
            Member NewMember = _ReadInfoNewMember();
+            if (NewMember == null)
+            {
+                Console.WriteLine("INVALID INFO MEMBER, MEMBER IS NULL.");
+                return;
+            }
            if ( FileManager.SaveMember(FileManager.ConvertMemberObjectToStLine(NewMember)))
             {
                 Members[NumberMembersInArray] = NewMember;
