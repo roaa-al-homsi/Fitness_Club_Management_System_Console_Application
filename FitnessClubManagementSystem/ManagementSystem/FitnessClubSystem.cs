@@ -202,6 +202,82 @@ namespace FitnessClubManagementSystem.Core
 
         /* Activity */
 
+        static Activity _ReadInfoNewActivity()
+        {
+            string type,name,instructorName,difficultyLevel="";
+            int durationMinutes , capacity,trainerId= 0;
+            double hourlyRate= 0;
+            int newId = NumberActivityInArray + 1;
+            
+            Console.WriteLine("Enter type activity (Group or Personal Training) (g|pt) ?");
+            type = Console.ReadLine();
+            while (type != "g" && type != "pt")
+            {
+                Console.WriteLine("Invalid input!! , Please enter g or pt only.");
+                type = Console.ReadLine();
+            }
+
+            Console.WriteLine("Enter activity name : ");
+            name = Console.ReadLine();
+
+            Console.WriteLine("Enter duration minutes : ");
+            string inputeDurationMinutes = Console.ReadLine();
+            while(!int.TryParse(inputeDurationMinutes, out durationMinutes))
+            {
+                Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
+                inputeDurationMinutes = Console.ReadLine();
+            }
+
+            Console.WriteLine("Enter capacity : ");
+            string inputCapacity = Console.ReadLine();
+            while (!int.TryParse(inputCapacity, out capacity))
+            {
+                Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
+                inputCapacity = Console.ReadLine();
+            }
+
+            switch (type)
+            {
+                case "g":
+                    Console.WriteLine("Enter an instructor name : ");
+                    instructorName=Console.ReadLine();
+
+                    Console.WriteLine("Enter difficulty level Beginner or Advanced [beg | adv] ?");
+                    difficultyLevel = Console.ReadLine();
+                    while (difficultyLevel != "beg" && difficultyLevel != "adv")
+                    {
+                        Console.WriteLine("Invalid input!! , Please enter beg or adv only.");
+                        difficultyLevel = Console.ReadLine();
+                    }
+
+                    return new GroupClass(newId, name, durationMinutes, capacity, instructorName, difficultyLevel);
+
+                case "pt":
+                    Console.WriteLine("Enter trainer Id : ");
+                    string inputTrainerId = Console.ReadLine();
+                    while (!int.TryParse(inputTrainerId, out trainerId))
+                    {
+                        Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
+                        inputTrainerId = Console.ReadLine();
+                    }
+                    // must method check if this trainer id exist or not . 
+
+
+                    Console.WriteLine("Enter hourly rate  : ");
+                    string inputHourlyRate = Console.ReadLine();
+                    while (!double.TryParse(inputHourlyRate, out hourlyRate))
+                    {
+                        Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
+                        inputHourlyRate = Console.ReadLine();
+                    }
+
+                    return new PersonalTrainingSession(newId, name, durationMinutes, capacity, trainerId, hourlyRate);
+
+                default:
+                    return null;
+            }
+
+        }
         public static void ShowAllActivity()
         {
             for (int i = 0; i < NumberActivityInArray; i++)
@@ -214,8 +290,35 @@ namespace FitnessClubManagementSystem.Core
             Console.WriteLine("                                       TOTAL ACTIVITY IN SYSTEM: " + FitnessClubSystem.NumberActivityInArray);
 
         }
+        public static void AddActivity()
+        {
+            if(NumberActivityInArray>=MaxActivity)
+            {
+                Console.WriteLine("YOU CAN'T ADDING A NEW ACTIVITY TO FILE, FILE IS FULLING");
+                return;
+            }
 
-      
+            Activity NewActivity = _ReadInfoNewActivity();
+        
+            if (NewActivity == null)
+            {
+                Console.WriteLine("There is a wrong , an activity is null");
+                return;
+            }
+
+            if (FileManager.SaveActivity(FileManager.ConvertActivityObjectToStLine(NewActivity)))
+            {
+                Activities[NumberActivityInArray] = NewActivity;
+                ++NumberActivityInArray;
+                Console.WriteLine("Success Saving Activity To File..");
+            }
+            else
+            {
+                Console.WriteLine("Fail Saving Activity To File!!!");
+
+            }
+        }
+
 
     }
 }

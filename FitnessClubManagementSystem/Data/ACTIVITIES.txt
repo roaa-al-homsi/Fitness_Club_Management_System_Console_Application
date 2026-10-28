@@ -2,3 +2,4 @@
 2;HIIT Blast;45;15;GROUP;Omar Nassar;Advanced
 3;1-on-1 Strength;60;1;PT;101;40
 4;1-on-1 Cardio;30;1;PT;102;35
+5;Morning Yoga;20;20;GROUP;Sara Khalil;Beginner

@@ -153,8 +153,12 @@ namespace FitnessClubManagementSystem.ManagementSystem
                     {
                         break;
                     }
-
-                    localActivities[FitnessClubSystem.NumberActivityInArray] = _ConvertStLineToActivityObject(line);
+                    Activity activity = _ConvertStLineToActivityObject(line);
+                    if (activity == null)
+                    {   //still localActivities is empty there is no any activity inside it.
+                        return localActivities;
+                    }
+                    localActivities[FitnessClubSystem.NumberActivityInArray] = activity;
                     FitnessClubSystem.NumberActivityInArray++;
 
                     line = fr.ReadLine();
@@ -175,6 +179,58 @@ namespace FitnessClubManagementSystem.ManagementSystem
             return localActivities;
         }
 
+        public static string ConvertActivityObjectToStLine(Activity activity, string seperator = ";")
+        {
+            string activityLine = "";
+            activityLine = activity.Id.ToString()+ seperator;
+            activityLine += activity.Name + seperator;
+            activityLine += activity.DurationMinutes.ToString() + seperator;
+            activityLine += activity.Capacity.ToString() + seperator;
+            
+        
+            if (activity is GroupClass)
+            {
+                GroupClass groupClass = (GroupClass)activity;
+                activityLine += "GROUP" + seperator;
+                activityLine += groupClass.InstructorName + seperator;
+                activityLine += groupClass.DifficultyLevel=="beg"? "Beginner" : "Advanced";
+                
+                return activityLine;
+            }
+            else if (activity is PersonalTrainingSession)
+            {
+                PersonalTrainingSession personalTrainingSession = (PersonalTrainingSession)activity;
+                activityLine += "PT" + seperator;
+                activityLine += personalTrainingSession.TrainerId.ToString() + seperator;
+                activityLine += personalTrainingSession.HourlyRate.ToString();
+
+                return activityLine;
+            }
+            return " ";
+
+        }
+
+        public static bool SaveActivity(string activityRecord)//Add activity record to file.
+        {
+            StreamWriter fw = null;
+
+            try
+            {
+                // Console.WriteLine("Save path: " + Path.GetFullPath(FileNameMembers));
+
+                fw = new StreamWriter(FileNameActivities, true);
+
+                fw.WriteLine(activityRecord);
+
+                fw.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
 
     }
 }

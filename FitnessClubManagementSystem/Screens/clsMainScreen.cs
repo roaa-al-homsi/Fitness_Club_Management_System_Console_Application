@@ -118,8 +118,8 @@ namespace FitnessClubManagementSystem.Screens
         }
         static void _AddActivity()
         {
-          //  _DrawHeaderScreen("Fitness Club Management System", "ADDING NEW ACTIVITY SCREEN");
-           // FitnessClubSystem.AddActivity();
+            _DrawHeaderScreen("Fitness Club Management System", "ADDING NEW ACTIVITY SCREEN");
+            FitnessClubSystem.AddActivity();
         }
         static void _AddTrainer()
         {
