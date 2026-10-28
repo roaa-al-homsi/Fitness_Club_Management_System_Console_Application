@@ -24,12 +24,12 @@ namespace FitnessClubManagementSystem.Core
         public const int MaxTrainers = 50;
         public static int NumberTrainersInArray = 0;
         public static Trainer[] Trainers = new Trainer[MaxTrainers];
-        
 
-        
-        
+
+
+
         public static void LoadingDataApplication()
-        { 
+        {
             //in method LoadDataFromFileToArrayMembers it's load all members from file to members array an update to NumberMembersInArray.
             Members = FileManager.LoadDataFromFileToArrayMembers();
 
@@ -43,9 +43,9 @@ namespace FitnessClubManagementSystem.Core
         /* Member */
         public static void ShowAllMembers()
         {
-           // Members = FileManager.LoadDataFromFileToArrayMembers();
+            // Members = FileManager.LoadDataFromFileToArrayMembers();
 
-            for(int i = 0;i<=NumberMembersInArray-1;i++ )
+            for (int i = 0; i <= NumberMembersInArray - 1; i++)
             {
                 if (Members[i] is StandardMember)
                 {
@@ -65,7 +65,7 @@ namespace FitnessClubManagementSystem.Core
                 }
 
                 else if (Members[i] is PremiumMember)
-                { 
+                {
                     PremiumMember premiumMember = (PremiumMember)Members[i];
                     //  Console.WriteLine($"ID: {premiumMember.Id} | Name: {premiumMember.Name}   | Email : {premiumMember.Email}  |  Join Date : {premiumMember.JoinDate} | Type : PREMIUM  | Has Personal Training : {premiumMember.HasPersonalTraining} | Number Guest Passes : {premiumMember.GuestPasses} | Monthly Fee : {premiumMember.CalculateMonthlyFee()}");
                     Console.WriteLine(
@@ -86,18 +86,18 @@ namespace FitnessClubManagementSystem.Core
             Console.WriteLine("                                       TOTAL MEMBER IN SYSTEM: " + FitnessClubSystem.NumberMembersInArray);
 
         }
-        static Member _ReadInfoNewMember( )
+        static Member _ReadInfoNewMember()
         {
-           
+
             string type, name, email = "";
             DateTime joinDate = DateTime.Now;
 
             int freezeDaysUsed, guestPasses = 0;
-            bool hasPersonalTrainer= false;
+            bool hasPersonalTrainer = false;
             int newId = NumberMembersInArray + 1;
 
             Console.WriteLine("What type of new member is it  [STANDARD OR PREMIUM]?");
-            type=Console.ReadLine();
+            type = Console.ReadLine();
 
             Console.WriteLine("Enter member name : ");
             name = Console.ReadLine();
@@ -118,12 +118,12 @@ namespace FitnessClubManagementSystem.Core
             {
                 case "STANDARD":
 
-                     Console.WriteLine("Enter number freeze days used : ");
-                     freezeDaysUsed = int.Parse(Console.ReadLine());
-                     
-                     StandardMember standardMember = new StandardMember(newId,name, email,joinDate,freezeDaysUsed);
-                    
-                     return standardMember;
+                    Console.WriteLine("Enter number freeze days used : ");
+                    freezeDaysUsed = int.Parse(Console.ReadLine());
+
+                    StandardMember standardMember = new StandardMember(newId, name, email, joinDate, freezeDaysUsed);
+
+                    return standardMember;
 
                 case "PREMIUM":
                     Console.WriteLine("Has personal training? [Yes Or No]");
@@ -142,30 +142,30 @@ namespace FitnessClubManagementSystem.Core
                 default:
 
                     return null;
-            } 
+            }
         }
-        public static void  AddMember()
+        public static void AddMember()
         {
-            if(NumberMembersInArray>=MaxMembers)
+            if (NumberMembersInArray >= MaxMembers)
             {
                 Console.WriteLine("YOU CAN'T ADDING A NEW MEMBER TO FILE, FILE IS FULLING");
-                return; 
+                return;
             }
 
 
-           Member NewMember = _ReadInfoNewMember();
+            Member NewMember = _ReadInfoNewMember();
             if (NewMember == null)
             {
                 Console.WriteLine("INVALID INFO MEMBER, MEMBER IS NULL.");
                 return;
             }
-           if ( FileManager.SaveMember(FileManager.ConvertMemberObjectToStLine(NewMember)))
+            if (FileManager.SaveMember(FileManager.ConvertMemberObjectToStLine(NewMember)))
             {
                 Members[NumberMembersInArray] = NewMember;
                 ++NumberMembersInArray;
                 Console.WriteLine("Success Saving Member To File..");
             }
-           else
+            else
             {
                 Console.WriteLine("Fail Saving Member To File!!!");
 
@@ -196,23 +196,21 @@ namespace FitnessClubManagementSystem.Core
             }
             return id;
         }
-        public static void FindMemberById ()
+        public static void FindMemberById()
         {
             Member member = _FindMember(_ReadIdMember());
-         
-            if(member == null )
+
+            if (member == null)
             {
-              Console.WriteLine($"There is no exist member with this Id ");
+                Console.WriteLine($"There is no exist member with this Id ");
                 return;
             }
             //Here member is exist and fulling .
             member.PrintInfo();
         }
-        
+
 
         /* Activity */
-
-       
         public static void ShowAllActivity()
         {
             for (int i = 0; i < NumberActivityInArray; i++)
@@ -225,7 +223,6 @@ namespace FitnessClubManagementSystem.Core
             Console.WriteLine("                                       TOTAL ACTIVITY IN SYSTEM: " + FitnessClubSystem.NumberActivityInArray);
 
         }
-       
         static Activity _ReadInfoNewActivity()
         {
             string type, name, instructorName, difficultyLevel = "";
@@ -304,14 +301,14 @@ namespace FitnessClubManagementSystem.Core
         }
         public static void AddActivity()
         {
-            if(NumberActivityInArray>=MaxActivity)
+            if (NumberActivityInArray >= MaxActivity)
             {
                 Console.WriteLine("YOU CAN'T ADDING A NEW ACTIVITY TO FILE, FILE IS FULLING");
                 return;
             }
 
             Activity NewActivity = _ReadInfoNewActivity();
-        
+
             if (NewActivity == null)
             {
                 Console.WriteLine("There is a wrong , an activity is null");
@@ -330,7 +327,6 @@ namespace FitnessClubManagementSystem.Core
 
             }
         }
-
         static int _ReadIdActivity()
         {
             Console.WriteLine($"Please, Enter Id activity : ");
@@ -344,9 +340,9 @@ namespace FitnessClubManagementSystem.Core
         }
         static Activity _FindActivity(int ActivityId)
         {
-            for(int i = 0;i<NumberActivityInArray; i++)
+            for (int i = 0; i < NumberActivityInArray; i++)
             {
-                if (Activities[i].Id== ActivityId)
+                if (Activities[i].Id == ActivityId)
                 {
                     return Activities[i];
                 }
@@ -356,7 +352,7 @@ namespace FitnessClubManagementSystem.Core
         public static void FindActivityById()
         {
             Activity activity = _FindActivity(_ReadIdActivity());
-            if(activity == null)
+            if (activity == null)
             {
                 Console.WriteLine($"There is no exist activity with this Id ");
                 return;
@@ -365,8 +361,8 @@ namespace FitnessClubManagementSystem.Core
             activity.PrintInfo();
         }
 
+       
         /*TRAINERS*/
-
         public static void ShowAllTrainers()
         {
             for (int i = 0; i < NumberTrainersInArray; i++)
@@ -379,7 +375,51 @@ namespace FitnessClubManagementSystem.Core
             Console.WriteLine("                                       TOTAL TRAINERS IN SYSTEM: " + FitnessClubSystem.NumberTrainersInArray);
 
         }
+        static Trainer _ReadInfoTrainer()
+        {
+            string name, specialty = "";
+            double salary = 0;
+            int newId = NumberTrainersInArray + 1;
 
+            Console.WriteLine("Enter trainer name : ");
+            name = Console.ReadLine();
+
+            Console.WriteLine("Enter specialty : ");
+            specialty = Console.ReadLine();
+
+            Console.WriteLine("Enter salary: ");
+            string inputSalary = Console.ReadLine();
+            while (!double.TryParse(inputSalary, out salary) || salary < 0)
+            {
+                Console.WriteLine("Invalid salary! Enter a non-negative number:");
+                inputSalary = Console.ReadLine();
+            }
+            return new Trainer(newId, name, specialty, salary);
+        }
+        public static void AddTrainer()
+        {
+            if (NumberTrainersInArray >= MaxTrainers)
+            {
+                Console.WriteLine("YOU CAN'T ADDING A NEW TRAINERS TO FILE, FILE IS FULLING");
+                return;
+            }
+
+            Trainer newTrainer = _ReadInfoTrainer();
+
+            if (FileManager.SaveTrainer(FileManager.ConvertTrainerObjectToStLine(newTrainer)))
+            {
+                Trainers[NumberTrainersInArray] = newTrainer;
+                ++NumberTrainersInArray;
+                Console.WriteLine("Success Saving Trainer To File..");
+            }
+            else
+            {
+                Console.WriteLine("Fail Saving Trainer To File!!!");
+
+            }
+
+
+        }
 
     }
 }

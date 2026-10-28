@@ -285,6 +285,40 @@ namespace FitnessClubManagementSystem.ManagementSystem
             return localTrainers;
         }
 
+        public static string ConvertTrainerObjectToStLine(Trainer trainer, char seperatore = ';')
+        {
+            string trainerLine = "";
+            trainerLine = trainer.Id.ToString() + seperatore;
+            trainerLine += trainer.Name + seperatore;
+            trainerLine += trainer.Specialty + seperatore;
+            trainerLine += trainer.Salary.ToString();
+            return trainerLine;
+        }
+        public static bool SaveTrainer(string TrainerRecord)//Add new trainer to file.
+        {
+            StreamWriter fw = null;
+
+            try
+            {
+                fw = new StreamWriter(FileNameTrainers, true);
+
+                fw.WriteLine(TrainerRecord);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            finally
+            {
+                if (fw != null)
+                {
+                    fw.Close();
+                }
+            }
+        }
 
 
     }
