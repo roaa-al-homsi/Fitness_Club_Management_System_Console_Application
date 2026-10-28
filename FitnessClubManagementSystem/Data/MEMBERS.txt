@@ -5,3 +5,5 @@
 5;Rana Saeed;rana.saeed@example.com;2026-03-05;STANDARD;0;0
 6;Roaa Homsi;roaa@gmail.com;12/10/2026;STANDARD;2;0
 7;Ahmad Homsi;ahmad@gmail.com;12/10/2026;PREMIUM;False;5
+8;Rayan Shayah;rayan@gmail.com;27/10/2026;PREMIUM;False;3
+9;Reem;reem@gmail.com;25/11/2026;STANDARD;0;0

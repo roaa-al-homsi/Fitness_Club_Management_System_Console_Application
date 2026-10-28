@@ -99,7 +99,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                Console.WriteLine("Save path: " + Path.GetFullPath(FileNameMembers));
+               // Console.WriteLine("Save path: " + Path.GetFullPath(FileNameMembers));
 
                 fw = new StreamWriter(FileNameMembers, true);
 

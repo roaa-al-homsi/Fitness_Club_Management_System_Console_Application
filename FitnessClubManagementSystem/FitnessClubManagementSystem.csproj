@@ -45,9 +45,9 @@
   <ItemGroup>
     <Compile Include="ManagementSystem\FileManager.cs" />
     <Compile Include="ManagementSystem\FitnessClubSystem.cs" />
-    <Compile Include="Core\Member.cs" />
-    <Compile Include="Core\PremiumMember.cs" />
-    <Compile Include="Core\StandardMember.cs" />
+    <Compile Include="Core\Member\Member.cs" />
+    <Compile Include="Core\Member\PremiumMember.cs" />
+    <Compile Include="Core\Member\StandardMember.cs" />
     <Compile Include="Lib\clsInputValidate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
