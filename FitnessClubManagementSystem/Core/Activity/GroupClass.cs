@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace FitnessClubManagementSystem.Core.Activity
 {
-    public class Group:Activity
+    public class GroupClass:Activity
     {
         public string InstructorName { get; set; }
         public string DifficultyLevel { get; set; }//Beginner  , Advanced
 
-        public Group(int id, string name, TimeSpan durationMinutes, int capacity,string instructorName, string difficultyLevel):base(id,name,durationMinutes,capacity)
+        public GroupClass(int id, string name, TimeSpan durationMinutes, int capacity,string instructorName, string difficultyLevel):base(id,name,durationMinutes,capacity)
         {
             this.InstructorName = instructorName;
             this.DifficultyLevel = difficultyLevel;
