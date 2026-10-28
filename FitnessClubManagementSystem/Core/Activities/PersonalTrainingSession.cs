@@ -28,12 +28,10 @@ namespace FitnessClubManagementSystem.Core.Activities
         public override void PrintInfo()
         {
             base.PrintInfo();
-
-            Console.WriteLine($"Type: Personal Training Session ");
-            Console.WriteLine($"Trainer Id: {TrainerId}");
-            Console.WriteLine($"Hourly Rate: {HourlyRate}");
-            Console.WriteLine("*******************************");
+            Console.Write($"Type: {"PERSONAL TRAINING",-20} | " + $"Trainer ID: {TrainerId,-10} | " + $"Hourly Rate: {HourlyRate,-10}");
         }
+
+
 
     }
 }

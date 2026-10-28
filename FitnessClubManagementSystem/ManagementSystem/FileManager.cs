@@ -1,6 +1,8 @@
 ﻿using FitnessClubManagementSystem.Core;
+using FitnessClubManagementSystem.Core.Activities;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,9 @@ namespace FitnessClubManagementSystem.ManagementSystem
     public static class FileManager
     {
         public const string FileNameMembers = @"Data\MEMBERS.txt";
+        public const string FileNameActivities = @"Data\ACTIVITIES.txt";
+        
+        /* Member */
         static Member _ConvertStLineToMemberObject(string stLine, char seperatore = ';')
         {
             string[] lineInMembersFile = stLine.Split(seperatore);
@@ -26,7 +31,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
         }
 
-       public static string ConvertMemberObjectToStLine(Member member, string seperator = ";")
+        public static string ConvertMemberObjectToStLine(Member member, string seperator = ";")
         {
             string textObjectMember = " ";
             textObjectMember  = member.Id.ToString()+ seperator;
@@ -114,7 +119,61 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 return false;
             }
         }
-       
+
+        /* Activity */
+        static Activity _ConvertStLineToActivityObject(string stLine, char seperatore = ';')
+        {
+            string[] lineInActivityFile = stLine.Split(seperatore);
+            switch (lineInActivityFile[4])
+            {
+                case "GROUP":
+                    return new GroupClass(Convert.ToInt32(lineInActivityFile[0]), lineInActivityFile[1], Convert.ToInt32(lineInActivityFile[2]), Convert.ToInt32(lineInActivityFile[3]), lineInActivityFile[5], lineInActivityFile[6]);
+                
+                case "PT":
+                    return new PersonalTrainingSession(Convert.ToInt32(lineInActivityFile[0]), lineInActivityFile[1], Convert.ToInt32(lineInActivityFile[2]), Convert.ToInt32(lineInActivityFile[3]), Convert.ToInt32(lineInActivityFile[5]), Convert.ToDouble(lineInActivityFile[6]));
+                default:
+                    return null;
+            }
+        }
+
+        public static Activity[] LoadDataFromFileToArrayActivities()
+        {
+            StreamReader fr = null;
+            Activity[] localActivities = new Activity[FitnessClubSystem.MaxActivity];
+            try
+            {
+                fr = new StreamReader(FileNameActivities);
+
+                string line = fr.ReadLine();
+                FitnessClubSystem.NumberActivityInArray = 0;
+
+                while (line != null)
+                {
+                    if (FitnessClubSystem.NumberActivityInArray >= FitnessClubSystem.MaxActivity)
+                    {
+                        break;
+                    }
+
+                    localActivities[FitnessClubSystem.NumberActivityInArray] = _ConvertStLineToActivityObject(line);
+                    FitnessClubSystem.NumberActivityInArray++;
+
+                    line = fr.ReadLine();
+                }
+
+                fr.Close();
+            }
+            catch (NullReferenceException e)
+            {
+                string s = "";
+                s = s + e;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return localActivities;
+        }
 
 
     }

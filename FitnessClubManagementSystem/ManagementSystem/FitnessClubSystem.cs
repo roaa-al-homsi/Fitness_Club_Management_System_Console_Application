@@ -14,18 +14,28 @@ namespace FitnessClubManagementSystem.Core
     public static class FitnessClubSystem
     {
         public const int MaxMembers = 50;
-        public static int NumberMembersInArray = 0;
+        public static int NumberMembersInArray = 0;//to detect how many member in array members because size of array is 50 but we don't use all this capacity.
         public static Member[] Members = new Member[MaxMembers];//to storing all members that exist in file. 
 
-      
+        public const int MaxActivity = 50;
+        public static int NumberActivityInArray = 0;//to detect how many member in array activities because size of array is 50 but we don't use all this capacity.
+        public static Activity[] Activities = new Activity[MaxActivity];//to storing all activities that exist in file. 
 
 
+        
+        
         public static void LoadingDataApplication()
-        {
-            Members= FileManager.LoadDataFromFileToArrayMembers();
-            //in method LoadDataFromFileToArrayMembers will update to NumberMembersInArray.
+        { 
+            //in method LoadDataFromFileToArrayMembers it's load all members from file to members array an update to NumberMembersInArray.
+            Members = FileManager.LoadDataFromFileToArrayMembers();
+
+            //in method LoadDataFromFileToArrayActivities it's load all activities from file to activites array an update to NumberActivitiesInArray.
+
+            Activities = FileManager.LoadDataFromFileToArrayActivities();
 
         }
+
+        /* Member */
         public static void ShowAllMembers()
         {
            // Members = FileManager.LoadDataFromFileToArrayMembers();
@@ -71,7 +81,6 @@ namespace FitnessClubManagementSystem.Core
             Console.WriteLine("                                       TOTAL MEMBER IN SYSTEM: " + FitnessClubSystem.NumberMembersInArray);
 
         }
-
         static Member _ReadInfoNewMember( )
         {
            
@@ -153,8 +162,6 @@ namespace FitnessClubManagementSystem.Core
             }
 
         }
-
-
         static Member _FindMember(int id)//Find Member By Id
         {
             for (int i = 0; i <= NumberMembersInArray - 1; i++)
@@ -168,7 +175,6 @@ namespace FitnessClubManagementSystem.Core
 
             return null;
         }
-      
         static int _ReadIdMember()
         {
             Console.WriteLine($"Please, Enter Id member : ");
@@ -194,8 +200,22 @@ namespace FitnessClubManagementSystem.Core
         }
         
 
+        /* Activity */
 
+        public static void ShowAllActivity()
+        {
+            for (int i = 0; i < NumberActivityInArray; i++)
+            {
+                Activities[i].PrintInfo();
+                Console.WriteLine(" ");
 
+            }
+            Console.WriteLine("\n                                     **************************************");
+            Console.WriteLine("                                       TOTAL ACTIVITY IN SYSTEM: " + FitnessClubSystem.NumberActivityInArray);
+
+        }
+
+      
 
     }
 }

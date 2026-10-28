@@ -90,7 +90,8 @@ namespace FitnessClubManagementSystem.Screens
         }
         static void _ShowAllActivity()
         {
-            
+            _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL ACTIVITIES SCREEN");
+            FitnessClubSystem.ShowAllActivity();
         }
 
         static void _ShowAllTrainers()
@@ -117,7 +118,8 @@ namespace FitnessClubManagementSystem.Screens
         }
         static void _AddActivity()
         {
-
+          //  _DrawHeaderScreen("Fitness Club Management System", "ADDING NEW ACTIVITY SCREEN");
+           // FitnessClubSystem.AddActivity();
         }
         static void _AddTrainer()
         {

@@ -25,11 +25,7 @@ namespace FitnessClubManagementSystem.Core.Activities
         public override void PrintInfo()
         {
             base.PrintInfo();
-
-            Console.WriteLine($"Type: Group ");
-            Console.WriteLine($"Instructor Name: {InstructorName}");
-            Console.WriteLine($"Difficulty Level: {DifficultyLevel}");
-            Console.WriteLine("*******************************");
+            Console.Write($"Type: {"GROUP CLASS",-20} | " + $"Instructor: {InstructorName,-15} | " + $"Difficulty: {DifficultyLevel,-10}");
         }
 
 

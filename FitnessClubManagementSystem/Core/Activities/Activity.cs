@@ -30,13 +30,7 @@ namespace FitnessClubManagementSystem.Core.Activities
 
         public virtual void PrintInfo()
         {
-            Console.WriteLine("********* Activity Info *********");
-            Console.WriteLine($"ID: {Id}");
-            Console.WriteLine($"Name: {Name}");
-            Console.WriteLine($"Duration Minutes: {DurationMinutes}");
-            Console.WriteLine($"Capacity: {Capacity}");
-            Console.WriteLine($"Session Cost: {CalculateSessionCost()}");
-           
+          Console.Write($"ID: {Id,-3} | " + $"Name: {Name,-20} | " + $"Duration: {DurationMinutes,-3} min | " + $"Capacity: {Capacity,-3} | " + $"Session Cost: {CalculateSessionCost(),-10}");
         }
 
 
