@@ -104,12 +104,13 @@ namespace FitnessClubManagementSystem.Screens
         }
         static void _FindMemberById()
         {
-            _DrawHeaderScreen("Fitness Club Management System", "FIND A MEMBER Screen");
+            _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "FIND A MEMBER SCREEN");
             FitnessClubSystem.FindMemberById();
         }
-        static void _FindActivity()
+        static void _FindActivityById()
         {
-
+            _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "FIND A ACTIVITY SCREEN");
+            FitnessClubSystem.FindActivityById();
         }
         static void _AddMember()
         {
@@ -170,7 +171,7 @@ namespace FitnessClubManagementSystem.Screens
                     break;
                 case 6:
                      Console.Clear();
-                    _FindActivity();
+                    _FindActivityById();
                     _GoBackToMainMenu();
                     break;
                 case 7:

@@ -139,7 +139,6 @@ namespace FitnessClubManagementSystem.Core
                     return null;
             } 
         }
-        
         public static void  AddMember()
         {
             if(NumberMembersInArray>=MaxMembers)
@@ -208,13 +207,27 @@ namespace FitnessClubManagementSystem.Core
 
         /* Activity */
 
+        /* View Activites */
+        public static void ShowAllActivity()
+        {
+            for (int i = 0; i < NumberActivityInArray; i++)
+            {
+                Activities[i].PrintInfo();
+                Console.WriteLine(" ");
+
+            }
+            Console.WriteLine("\n                                     **************************************");
+            Console.WriteLine("                                       TOTAL ACTIVITY IN SYSTEM: " + FitnessClubSystem.NumberActivityInArray);
+
+        }
+        /* Add Activity */
         static Activity _ReadInfoNewActivity()
         {
-            string type,name,instructorName,difficultyLevel="";
-            int durationMinutes , capacity,trainerId= 0;
-            double hourlyRate= 0;
+            string type, name, instructorName, difficultyLevel = "";
+            int durationMinutes, capacity, trainerId = 0;
+            double hourlyRate = 0;
             int newId = NumberActivityInArray + 1;
-            
+
             Console.WriteLine("Enter type activity (Group or Personal Training) (g|pt) ?");
             type = Console.ReadLine();
             while (type != "g" && type != "pt")
@@ -228,7 +241,7 @@ namespace FitnessClubManagementSystem.Core
 
             Console.WriteLine("Enter duration minutes : ");
             string inputeDurationMinutes = Console.ReadLine();
-            while(!int.TryParse(inputeDurationMinutes, out durationMinutes))
+            while (!int.TryParse(inputeDurationMinutes, out durationMinutes))
             {
                 Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
                 inputeDurationMinutes = Console.ReadLine();
@@ -246,7 +259,7 @@ namespace FitnessClubManagementSystem.Core
             {
                 case "g":
                     Console.WriteLine("Enter an instructor name : ");
-                    instructorName=Console.ReadLine();
+                    instructorName = Console.ReadLine();
 
                     Console.WriteLine("Enter difficulty level Beginner or Advanced [beg | adv] ?");
                     difficultyLevel = Console.ReadLine();
@@ -284,18 +297,6 @@ namespace FitnessClubManagementSystem.Core
             }
 
         }
-        public static void ShowAllActivity()
-        {
-            for (int i = 0; i < NumberActivityInArray; i++)
-            {
-                Activities[i].PrintInfo();
-                Console.WriteLine(" ");
-
-            }
-            Console.WriteLine("\n                                     **************************************");
-            Console.WriteLine("                                       TOTAL ACTIVITY IN SYSTEM: " + FitnessClubSystem.NumberActivityInArray);
-
-        }
         public static void AddActivity()
         {
             if(NumberActivityInArray>=MaxActivity)
@@ -324,6 +325,42 @@ namespace FitnessClubManagementSystem.Core
 
             }
         }
+
+        /* Find Activity */
+        static int _ReadIdActivity()
+        {
+            Console.WriteLine($"Please, Enter Id activity : ");
+            int id = 0;
+            while (!int.TryParse(Console.ReadLine(), out id))
+            {
+                Console.WriteLine("Enter correct number please..., try again: ");
+                Console.WriteLine($"Please, Enter Id activity : ");
+            }
+            return id;
+        }
+        static Activity _FindActivity(int ActivityId)
+        {
+            for(int i = 0;i<NumberActivityInArray; i++)
+            {
+                if (Activities[i].Id== ActivityId)
+                {
+                    return Activities[i];
+                }
+            }
+            return null;
+        }
+        public static void FindActivityById()
+        {
+            Activity activity = _FindActivity(_ReadIdActivity());
+            if(activity == null)
+            {
+                Console.WriteLine($"There is no exist activity with this Id ");
+                return;
+            }
+            //here we found the activity and print info for this activity.
+            activity.PrintInfo();
+        }
+
 
 
     }
