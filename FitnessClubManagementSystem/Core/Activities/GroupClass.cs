@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FitnessClubManagementSystem.Core.Activity
+namespace FitnessClubManagementSystem.Core.Activities
 {
     public class GroupClass:Activity
     {

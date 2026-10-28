@@ -1,4 +1,5 @@
 ﻿using FitnessClubManagementSystem.ManagementSystem;
+using FitnessClubManagementSystem.Core.Activities;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -15,7 +16,10 @@ namespace FitnessClubManagementSystem.Core
         public const int MaxMembers = 50;
         public static int NumberMembersInArray = 0;
         public static Member[] Members = new Member[MaxMembers];//to storing all members that exist in file. 
-       
+
+      
+
+
         public static void LoadingDataApplication()
         {
             Members= FileManager.LoadDataFromFileToArrayMembers();

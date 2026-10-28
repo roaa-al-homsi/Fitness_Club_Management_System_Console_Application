@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Activities\Activity.cs" />
+    <Compile Include="Core\Activities\GroupClass.cs" />
+    <Compile Include="Core\Activities\PersonalTrainingSession.cs" />
     <Compile Include="ManagementSystem\FileManager.cs" />
     <Compile Include="ManagementSystem\FitnessClubSystem.cs" />
     <Compile Include="Core\Member\Member.cs" />
