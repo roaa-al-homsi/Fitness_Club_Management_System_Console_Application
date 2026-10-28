@@ -11,7 +11,7 @@ namespace FitnessClubManagementSystem.Core.Activity
         public string InstructorName { get; set; }
         public string DifficultyLevel { get; set; }//Beginner  , Advanced
 
-        public GroupClass(int id, string name, TimeSpan durationMinutes, int capacity,string instructorName, string difficultyLevel):base(id,name,durationMinutes,capacity)
+        public GroupClass(int id, string name, int durationMinutes, int capacity,string instructorName, string difficultyLevel):base(id,name,durationMinutes,capacity)
         {
             this.InstructorName = instructorName;
             this.DifficultyLevel = difficultyLevel;

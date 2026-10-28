@@ -10,11 +10,11 @@ namespace FitnessClubManagementSystem.Core.Activity
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public TimeSpan DurationMinutes { get; set; }
+        public int DurationMinutes { get; set; }
         public int Capacity { get; set; }
 
 
-        public Activity(int id, string name, TimeSpan durationMinutes,int capacity)
+        public Activity(int id, string name, int durationMinutes,int capacity)
         {
             this.Id= id;
             this.Name= name;
@@ -36,7 +36,7 @@ namespace FitnessClubManagementSystem.Core.Activity
             Console.WriteLine($"Duration Minutes: {DurationMinutes}");
             Console.WriteLine($"Capacity: {Capacity}");
             Console.WriteLine($"Session Cost: {CalculateSessionCost()}");
-            Console.WriteLine("*******************************");
+           
         }
 
 

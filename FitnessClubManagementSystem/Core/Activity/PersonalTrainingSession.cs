@@ -10,9 +10,9 @@ namespace FitnessClubManagementSystem.Core.Activity
     public class PersonalTrainingSession :Activity
     {
         public int TrainerId { get; set; }
-        public int  HourlyRate { get; set; }
+        public double  HourlyRate { get; set; }
 
-        public PersonalTrainingSession(int id, string name, TimeSpan durationMinutes, int capacity, int trainerId, int hourlyRate) : base(id, name, durationMinutes, capacity)
+        public PersonalTrainingSession(int id, string name, int durationMinutes, int capacity, int trainerId, double hourlyRate) : base(id, name, durationMinutes, capacity)
         {
             this.TrainerId = trainerId;
             this.HourlyRate = hourlyRate;
@@ -20,7 +20,9 @@ namespace FitnessClubManagementSystem.Core.Activity
         }
         public override double CalculateSessionCost()
         {
-            return 0;
+            double cost = HourlyRate * (DurationMinutes /60.0);
+          
+            return cost;
 
         }
         public override void PrintInfo()
