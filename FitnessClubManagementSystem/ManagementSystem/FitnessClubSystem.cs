@@ -25,6 +25,9 @@ namespace FitnessClubManagementSystem.Core
         public static int NumberTrainersInArray = 0;
         public static Trainer[] Trainers = new Trainer[MaxTrainers];
 
+        public const int MaxBookings = 50;
+        public static int NumberBookingsInArray = 0;//to detect how many Bookings in array Bookings because size of array is 50 but we don't use all this capacity.
+        public static Booking[] Bookings = new Booking[MaxBookings];//to storing all Bookings that exist in file. 
 
 
 
@@ -38,6 +41,10 @@ namespace FitnessClubManagementSystem.Core
 
             //in method LoadDataFromFileToArrayTrainers it's load all Trainers from file to Trainers array an update to NumberTrainersInArray
             Trainers = FileManager.LoadDataFromFileToArrayTrainers();
+
+            //in method LoadDataFromFileToArrayTrainers it's load all Trainers from file to Trainers array an update to NumberTrainersInArray
+            Bookings = FileManager.LoadDataFromFileToArrayBookings();
+
         }
 
         /* Member */
@@ -418,6 +425,12 @@ namespace FitnessClubManagementSystem.Core
 
             }
 
+
+        }
+
+        /*BOOKINGS*/
+        public static void ShowAllBookings()
+        {
 
         }
 

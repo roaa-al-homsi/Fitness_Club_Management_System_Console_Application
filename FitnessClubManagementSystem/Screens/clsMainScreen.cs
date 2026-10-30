@@ -101,7 +101,8 @@ namespace FitnessClubManagementSystem.Screens
         }
         static void _ShowAllBookings()
         {
-
+            _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL BOOKINGS SCREEN");
+            FitnessClubSystem.ShowAllBookings();
         }
         static void _FindMemberById()
         {

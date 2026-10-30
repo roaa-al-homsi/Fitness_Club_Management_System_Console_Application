@@ -320,6 +320,11 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
         }
 
+        /*BOOKING*/
+        public static Booking[] LoadDataFromFileToArrayBookings()
+        {
+
+        }
 
     }
 }
