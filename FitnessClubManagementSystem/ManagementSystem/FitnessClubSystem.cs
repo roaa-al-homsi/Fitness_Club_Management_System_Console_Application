@@ -431,6 +431,14 @@ namespace FitnessClubManagementSystem.Core
         /*BOOKINGS*/
         public static void ShowAllBookings()
         {
+            for (int i = 0; i < NumberBookingsInArray; i++)
+            {
+                Bookings[i].PrintInfo();
+                Console.WriteLine(" ");
+
+            }
+            Console.WriteLine("\n                                     **************************************");
+            Console.WriteLine("                                       TOTAL BOOKINGS IN SYSTEM: " + FitnessClubSystem.NumberBookingsInArray);
 
         }
 

@@ -15,6 +15,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
         const string FileNameMembers = @"Data\MEMBERS.txt";
         const string FileNameActivities = @"Data\ACTIVITIES.txt";
         const string FileNameTrainers = @"Data\TRAINERS.txt";
+        const string FileNameBookings = @"Data\BOOKINGS.txt";
 
         /* Member */
         static Member _ConvertStLineToMemberObject(string stLine, char seperatore = ';')
@@ -321,9 +322,56 @@ namespace FitnessClubManagementSystem.ManagementSystem
         }
 
         /*BOOKING*/
+
+        static Booking _ConvertStLineToBookingObject(string stLine, char seperatore = ';')
+        {
+            string[] stObject = stLine.Split(';');
+            return new Booking(Convert.ToInt32(stObject[0]), Convert.ToInt32(stObject[1]), Convert.ToInt32(stObject[2]), Convert.ToDateTime(stObject[3]), stObject[4]);
+        }
+
         public static Booking[] LoadDataFromFileToArrayBookings()
         {
+            StreamReader fr = null;
 
+            Booking[] localBookings = new Booking[FitnessClubSystem.MaxBookings];
+
+            try
+            {
+                fr = new StreamReader(FileNameBookings);
+
+                string line = fr.ReadLine();
+
+                FitnessClubSystem.NumberBookingsInArray = 0;
+
+                while (line != null)
+                {
+                    if (FitnessClubSystem.NumberBookingsInArray >= FitnessClubSystem.MaxBookings)
+                    {
+                        break;
+                    }
+
+                    Booking booking = _ConvertStLineToBookingObject(line);
+
+                    localBookings[FitnessClubSystem.NumberBookingsInArray] = booking;
+
+                    FitnessClubSystem.NumberBookingsInArray++;
+
+                    line = fr.ReadLine();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (fr != null)
+                {
+                    fr.Close();
+                }
+            }
+
+            return localBookings;
         }
 
     }
