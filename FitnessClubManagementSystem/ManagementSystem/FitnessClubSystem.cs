@@ -219,11 +219,10 @@ namespace FitnessClubManagementSystem.Core
                 return;
             }
 
-            while(!IsMemberExist(memberId))
+            if(!IsMemberExist(memberId))
             {
                 Console.WriteLine($"There is no exist member with this Id ");
-                Console.WriteLine($"Please, Enter Id member : ");
-                memberId = _ReadIdMember();
+                return; 
             }
             Member member=_FindMember(memberId);
             if (member == null)
@@ -357,9 +356,14 @@ namespace FitnessClubManagementSystem.Core
 
             }
         }
+        public static bool IsActivityExist(int Id)
+        {
+            Activity activity = _FindActivity(Id);
+            return (activity != null);
+        }
         static int _ReadIdActivity()
         {
-            Console.WriteLine($"Please, Enter Id activity : ");
+            
             int id = 0;
             while (!int.TryParse(Console.ReadLine(), out id))
             {
@@ -381,11 +385,23 @@ namespace FitnessClubManagementSystem.Core
         }
         public static void FindActivityById()
         {
-            Activity activity = _FindActivity(_ReadIdActivity());
-            if (activity == null)
+            Console.WriteLine($"Please, Enter Id activity : ");
+            int activityId = _ReadIdActivity();
+            if(!IsActivityExist(activityId))
             {
                 Console.WriteLine($"There is no exist activity with this Id ");
                 return;
+            }
+
+            Activity activity = _FindActivity(activityId);
+            if (activity == null)
+            {
+                Console.WriteLine($"INVALID ACTIVITY");
+                return;
+            }
+            else
+            {
+                Console.WriteLine("Activity Is Found..");
             }
             //here we found the activity and print info for this activity.
             activity.PrintInfo();
