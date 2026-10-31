@@ -481,33 +481,94 @@ namespace FitnessClubManagementSystem.Core
 
         }
 
-        //static Booking _ReadInfoBooking()
-        //{
-        //    string status = "";
-        //    DateTime date = DateTime.Now;
-        //    int newId = NumberBookingsInArray + 1;
-        //    int memberId, activityId = 0;
+        static Booking _ReadInfoBooking()
+        {
+            string status = "";
+            DateTime date = DateTime.Now;
+            int newId = NumberBookingsInArray + 1;
+            int memberId, activityId = 0;
 
-        //    Console.WriteLine("Enter Member ID: ");
-        //    memberId = _ReadIdMember();
-        //    if(memberId==-1)
-        //    {
-        //        Console.WriteLine("INVALID INPUT..");
-        //        return null;
-        //    }
+            Console.WriteLine("Enter Member ID: ");
+            memberId = _ReadIdMember();
+          
+            if (memberId == -1)//this check is not necessary beacause _ReadIdMember with this logic will return an right number but this check if in the futhure change logic in method _ReadIdMember.
+            {
+                Console.WriteLine("INVALID INPUT..");
+                return null;
+            }
 
-        //    while (!IsMemberExist(memberId))
-        //    {
-        //        Console.WriteLine($"There is no member with this Id {memberId} in membership, please try again.");
-        //        Console.WriteLine("Enter ID Member:");
-        //        memberId = _ReadIdMember();
-           
-        //    }
+            while (!IsMemberExist(memberId))
+            {
+                Console.WriteLine($"There is no member with this Id {memberId} in membership, please try again.");
+                Console.WriteLine("Enter ID Member:");
+                memberId = _ReadIdMember();
+            }
 
-        //    return new Trainer(newId, name, specialty, salary);
-        //}
+
+            Console.WriteLine("Enter Activity ID: ");
+            activityId = _ReadIdActivity();
+            if (activityId == -1)//this check is not necessary beacause _ReadIdActivity with this logic will return an right number but this check if in the futhure change logic in method _ReadIdActivity.
+            {
+                Console.WriteLine("INVALID INPUT..");
+                return null;
+            }
+
+            while (!IsActivityExist(activityId))
+            {
+                Console.WriteLine($"There is no activity with this Id {activityId}, please try again.");
+                Console.WriteLine("Enter ID Activity:");
+                activityId = _ReadIdActivity();
+            }
+
+            Console.WriteLine("Enter Date (dd/MM/yyyy):");
+            string inputDate = Console.ReadLine();
+            while(!DateTime.TryParse(inputDate,out date))
+            {
+                Console.WriteLine("Invalid date! Please enter a valid date:");
+                inputDate = Console.ReadLine();
+            }
+
+            Console.WriteLine("Enter Status:");
+             status=Console.ReadLine();  
+            while(status != "Confirmed"&& status != "Cancelled" && status != "InProgress")
+            {
+                Console.WriteLine("Invalid Input, Please Enter a Right Input!!!");
+                Console.WriteLine("Enter Status:");
+                status = Console.ReadLine();
+            }
+
+            return new Booking(newId, memberId, activityId, date, status);
+        }
         public static void AddBooking()
         {
+            if (NumberBookingsInArray >= MaxBookings)
+            {
+                Console.WriteLine("YOU CAN'T ADDING A NEW BOOKING TO FILE, FILE IS FULLING");
+                return;
+            }
+
+            Booking newBooking = _ReadInfoBooking();
+            if (newBooking == null)
+            {
+                Console.WriteLine("INVALID BOOKING");
+                return;
+            }
+
+            if (FileManager.SaveBooking(FileManager.ConvertBookingObjectToStLine(newBooking)))
+            {
+                Bookings[NumberBookingsInArray] = newBooking;
+                ++NumberBookingsInArray;
+                Console.WriteLine("Success Saving Booking To File..");
+            }
+            else
+            {
+                Console.WriteLine("Fail Saving Booking To File!!!");
+
+            }
+
+
+
+
 
         }
 

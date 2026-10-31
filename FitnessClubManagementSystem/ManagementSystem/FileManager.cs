@@ -334,7 +334,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             StLBooking = booking.Id.ToString() + seperatore;
             StLBooking += booking.MemberId.ToString() + seperatore;
             StLBooking += booking.ActivityId.ToString() + seperatore;
-            StLBooking += booking.Date.ToString() + seperatore;
+            StLBooking += booking.Date.ToShortDateString() + seperatore;
             StLBooking += booking.Status;
 
             return StLBooking;
