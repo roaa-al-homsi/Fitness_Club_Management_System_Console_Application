@@ -213,18 +213,18 @@ namespace FitnessClubManagementSystem.Core
             Console.WriteLine($"Please, Enter Id member : ");
 
             int memberId = _ReadIdMember();
-            if(memberId==-1)
+            if (memberId == -1)
             {
                 Console.WriteLine("INVALID INPUT!!! ");
                 return;
             }
 
-            if(!IsMemberExist(memberId))
+            if (!IsMemberExist(memberId))
             {
                 Console.WriteLine($"There is no exist member with this Id ");
-                return; 
+                return;
             }
-            Member member=_FindMember(memberId);
+            Member member = _FindMember(memberId);
             if (member == null)
             {
                 Console.WriteLine($"There is no exist member with this Id ");
@@ -270,9 +270,11 @@ namespace FitnessClubManagementSystem.Core
             Console.WriteLine("Enter activity name : ");
             name = Console.ReadLine();
 
+     
             Console.WriteLine("Enter duration minutes : ");
             string inputeDurationMinutes = Console.ReadLine();
-            while (!int.TryParse(inputeDurationMinutes, out durationMinutes))
+            while (!int.TryParse(inputeDurationMinutes, out durationMinutes) || durationMinutes <= 0)
+
             {
                 Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
                 inputeDurationMinutes = Console.ReadLine();
@@ -280,7 +282,7 @@ namespace FitnessClubManagementSystem.Core
 
             Console.WriteLine("Enter capacity : ");
             string inputCapacity = Console.ReadLine();
-            while (!int.TryParse(inputCapacity, out capacity))
+            while (!int.TryParse(inputCapacity, out capacity) || capacity <= 0)
             {
                 Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
                 inputCapacity = Console.ReadLine();
@@ -303,19 +305,26 @@ namespace FitnessClubManagementSystem.Core
                     return new GroupClass(newId, name, durationMinutes, capacity, instructorName, difficultyLevel);
 
                 case "pt":
-                    Console.WriteLine("Enter trainer Id : ");
-                    string inputTrainerId = Console.ReadLine();
-                    while (!int.TryParse(inputTrainerId, out trainerId))
+                   
+                    if(NumberTrainersInArray==0)
                     {
-                        Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
-                        inputTrainerId = Console.ReadLine();
+                        Console.WriteLine("THERE IS NO ANY TRAINER IN SYSTEM");
+                        return null;
                     }
+                    Console.WriteLine("Enter trainer Id : ");
+                    trainerId = _ReadIdTrainer();
                     // must method check if this trainer id exist or not . 
+                    while (!IsTrainerExist(trainerId))
+                    {
+                        Console.WriteLine($"There is no trainer with this Id {trainerId}");
+                        Console.WriteLine("Enter trainer Id : ");
+                        trainerId = _ReadIdTrainer();
+                    }
 
 
                     Console.WriteLine("Enter hourly rate  : ");
                     string inputHourlyRate = Console.ReadLine();
-                    while (!double.TryParse(inputHourlyRate, out hourlyRate))
+                    while (!double.TryParse(inputHourlyRate, out hourlyRate) || hourlyRate <= 0)
                     {
                         Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
                         inputHourlyRate = Console.ReadLine();
@@ -363,7 +372,7 @@ namespace FitnessClubManagementSystem.Core
         }
         static int _ReadIdActivity()
         {
-            
+
             int id = 0;
             while (!int.TryParse(Console.ReadLine(), out id))
             {
@@ -387,7 +396,7 @@ namespace FitnessClubManagementSystem.Core
         {
             Console.WriteLine($"Please, Enter Id activity : ");
             int activityId = _ReadIdActivity();
-            if(!IsActivityExist(activityId))
+            if (!IsActivityExist(activityId))
             {
                 Console.WriteLine($"There is no exist activity with this Id ");
                 return;
@@ -407,7 +416,7 @@ namespace FitnessClubManagementSystem.Core
             activity.PrintInfo();
         }
 
-       
+
         /*TRAINERS*/
         public static void ShowAllTrainers()
         {
@@ -442,6 +451,17 @@ namespace FitnessClubManagementSystem.Core
             }
             return new Trainer(newId, name, specialty, salary);
         }
+        static int _ReadIdTrainer()
+        {
+            int trainerId = 0;
+            string inputTrainerId = Console.ReadLine();
+            while (!int.TryParse(inputTrainerId, out trainerId))
+            {
+                Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
+                inputTrainerId = Console.ReadLine();
+            }
+            return trainerId;
+        }
         public static void AddTrainer()
         {
             if (NumberTrainersInArray >= MaxTrainers)
@@ -467,6 +487,21 @@ namespace FitnessClubManagementSystem.Core
 
         }
 
+        static Trainer _FindTrainer(int Id)
+        {
+            for (int i = 0; i < NumberTrainersInArray; i++)
+            {
+                if (Trainers[i].Id == Id)
+                    return Trainers[i];
+            }
+            return null;
+        }
+        static bool IsTrainerExist(int Id)
+        {
+            Trainer trainer = _FindTrainer(Id);
+            return (trainer != null);
+        }
+
         /*BOOKINGS*/
         public static void ShowAllBookings()
         {
@@ -490,7 +525,7 @@ namespace FitnessClubManagementSystem.Core
 
             Console.WriteLine("Enter Member ID: ");
             memberId = _ReadIdMember();
-          
+
             if (memberId == -1)//this check is not necessary beacause _ReadIdMember with this logic will return an right number but this check if in the futhure change logic in method _ReadIdMember.
             {
                 Console.WriteLine("INVALID INPUT..");
@@ -522,15 +557,15 @@ namespace FitnessClubManagementSystem.Core
 
             Console.WriteLine("Enter Date (dd/MM/yyyy):");
             string inputDate = Console.ReadLine();
-            while(!DateTime.TryParse(inputDate,out date))
+            while (!DateTime.TryParse(inputDate, out date))
             {
                 Console.WriteLine("Invalid date! Please enter a valid date:");
                 inputDate = Console.ReadLine();
             }
 
             Console.WriteLine("Enter Status:");
-             status=Console.ReadLine();  
-            while(status != "Confirmed"&& status != "Cancelled" && status != "InProgress")
+            status = Console.ReadLine();
+            while (status != "Confirmed" && status != "Cancelled" && status != "InProgress")
             {
                 Console.WriteLine("Invalid Input, Please Enter a Right Input!!!");
                 Console.WriteLine("Enter Status:");
