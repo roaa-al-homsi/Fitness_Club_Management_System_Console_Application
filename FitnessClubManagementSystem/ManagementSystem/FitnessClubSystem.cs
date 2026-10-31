@@ -179,6 +179,12 @@ namespace FitnessClubManagementSystem.Core
             }
 
         }
+
+        static bool IsMemberExist(int Id)
+        {
+            Member member = _FindMember(Id);
+            return (member != null);
+        }
         static Member _FindMember(int id)//Find Member By Id
         {
             for (int i = 0; i <= NumberMembersInArray - 1; i++)
@@ -194,8 +200,7 @@ namespace FitnessClubManagementSystem.Core
         }
         static int _ReadIdMember()
         {
-            Console.WriteLine($"Please, Enter Id member : ");
-            int id = 0;
+            int id = -1;
             while (!int.TryParse(Console.ReadLine(), out id))
             {
                 Console.WriteLine("Enter correct number please..., try again: ");
@@ -205,12 +210,30 @@ namespace FitnessClubManagementSystem.Core
         }
         public static void FindMemberById()
         {
-            Member member = _FindMember(_ReadIdMember());
+            Console.WriteLine($"Please, Enter Id member : ");
 
+            int memberId = _ReadIdMember();
+            if(memberId==-1)
+            {
+                Console.WriteLine("INVALID INPUT!!! ");
+                return;
+            }
+
+            while(!IsMemberExist(memberId))
+            {
+                Console.WriteLine($"There is no exist member with this Id ");
+                Console.WriteLine($"Please, Enter Id member : ");
+                memberId = _ReadIdMember();
+            }
+            Member member=_FindMember(memberId);
             if (member == null)
             {
                 Console.WriteLine($"There is no exist member with this Id ");
                 return;
+            }
+            else
+            {
+                Console.WriteLine("Member Is Found..");
             }
             //Here member is exist and fulling .
             member.PrintInfo();
@@ -442,26 +465,31 @@ namespace FitnessClubManagementSystem.Core
 
         }
 
-        static Booking _ReadInfoBooking()
-        {
-            string status = "";
-            DateTime date = DateTime.Now;
-            int newId = NumberBookingsInArray + 1;
-            int memberId, activityId = 0;
+        //static Booking _ReadInfoBooking()
+        //{
+        //    string status = "";
+        //    DateTime date = DateTime.Now;
+        //    int newId = NumberBookingsInArray + 1;
+        //    int memberId, activityId = 0;
 
-            Console.WriteLine("Enter Member ID: ");
-            string inputMemberId = Console.ReadLine();
-            while (!int.TryParse(inputMemberId, out memberId))
-            {
-                Console.WriteLine("Invalid Input! Enter a number:");
-                inputMemberId = Console.ReadLine();
-            }
-            if (FindMemberById(memberId) != null)
-            {
-            }
+        //    Console.WriteLine("Enter Member ID: ");
+        //    memberId = _ReadIdMember();
+        //    if(memberId==-1)
+        //    {
+        //        Console.WriteLine("INVALID INPUT..");
+        //        return null;
+        //    }
 
-            return new Trainer(newId, name, specialty, salary);
-        }
+        //    while (!IsMemberExist(memberId))
+        //    {
+        //        Console.WriteLine($"There is no member with this Id {memberId} in membership, please try again.");
+        //        Console.WriteLine("Enter ID Member:");
+        //        memberId = _ReadIdMember();
+           
+        //    }
+
+        //    return new Trainer(newId, name, specialty, salary);
+        //}
         public static void AddBooking()
         {
 
