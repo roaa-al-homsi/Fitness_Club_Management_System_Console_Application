@@ -13,6 +13,7 @@ namespace FitnessClubManagementSystem.Core.Activities
         public int DurationMinutes { get; set; }
         public int Capacity { get; set; }
 
+      
 
         public Activity(int id, string name, int durationMinutes,int capacity)
         {

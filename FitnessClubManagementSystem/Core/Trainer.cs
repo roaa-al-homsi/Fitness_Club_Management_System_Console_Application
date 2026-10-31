@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FitnessClubManagementSystem.Core.Activities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,9 @@ namespace FitnessClubManagementSystem.Core
         public string Specialty { get; set; }
         public double Salary { get; set; }
 
-        int[] PersonalTrainingSessionsAsigned;
+        public  const int MaxSessionsAssigned = 10;
+        public  int NumSessionsAssignedInArray = 0;
+        public PersonalTrainingSession[] SessionsAssigned = new PersonalTrainingSession[MaxSessionsAssigned];
 
         public Trainer(int id, string name , string specialty, double salary)
         {
@@ -29,6 +32,19 @@ namespace FitnessClubManagementSystem.Core
             Console.Write($"ID: {Id,-3} | " + $"Name: {Name,-20} | " + $"Specialty: {Specialty,-30} | " + $"Salary: {Salary,-3}");
 
         }
+        public bool AssignSession(PersonalTrainingSession session)
+        {
+            if (NumSessionsAssignedInArray >= MaxSessionsAssigned)
+                return false;
 
+            SessionsAssigned[NumSessionsAssignedInArray] = session;
+            NumSessionsAssignedInArray++;
+
+            return true;
+        }
+        public bool HasAvailableSession()
+        {
+            return NumSessionsAssignedInArray < MaxSessionsAssigned;
+        }
     }
 }

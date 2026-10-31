@@ -313,12 +313,23 @@ namespace FitnessClubManagementSystem.Core
                     }
                     Console.WriteLine("Enter trainer Id : ");
                     trainerId = _ReadIdTrainer();
+
                     // must method check if this trainer id exist or not . 
                     while (!IsTrainerExist(trainerId))
                     {
                         Console.WriteLine($"There is no trainer with this Id {trainerId}");
                         Console.WriteLine("Enter trainer Id : ");
                         trainerId = _ReadIdTrainer();
+                    }
+                    Trainer trainer = _FindTrainer(trainerId);
+                    if(trainer==null)
+                    {
+                        return null;
+                    }
+                    if (!trainer.HasAvailableSession())
+                    {
+                        Console.WriteLine("This trainer has no available session.");
+                        return null;
                     }
 
 
@@ -349,7 +360,7 @@ namespace FitnessClubManagementSystem.Core
 
             if (NewActivity == null)
             {
-                Console.WriteLine("There is a wrong , an activity is null");
+                Console.WriteLine("INVALID ACTIVITY!!!");
                 return;
             }
 
@@ -358,6 +369,21 @@ namespace FitnessClubManagementSystem.Core
                 Activities[NumberActivityInArray] = NewActivity;
                 ++NumberActivityInArray;
                 Console.WriteLine("Success Saving Activity To File..");
+                if (NewActivity is PersonalTrainingSession)
+                {
+                    PersonalTrainingSession personalTraining = (PersonalTrainingSession)NewActivity;
+                    Trainer trainer = _FindTrainer(personalTraining.TrainerId);
+                    if (trainer != null)
+                    {
+                        if(!trainer.AssignSession(personalTraining))
+                        {
+                            Console.WriteLine("Failed to assign session to trainer.");
+
+                        }
+
+                    }
+      
+                }
             }
             else
             {
