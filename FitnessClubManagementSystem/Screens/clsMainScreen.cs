@@ -131,6 +131,8 @@ namespace FitnessClubManagementSystem.Screens
         }
         static void _AddBooking()
         {
+            _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "ADD NEW BOOKING SCREEN");
+            FitnessClubSystem.AddBooking();
 
         }
         static void _ShowProjectedMonthlyRevenue()

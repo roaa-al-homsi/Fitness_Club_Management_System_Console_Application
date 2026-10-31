@@ -442,5 +442,30 @@ namespace FitnessClubManagementSystem.Core
 
         }
 
+        static Booking _ReadInfoBooking()
+        {
+            string status = "";
+            DateTime date = DateTime.Now;
+            int newId = NumberBookingsInArray + 1;
+            int memberId, activityId = 0;
+
+            Console.WriteLine("Enter Member ID: ");
+            string inputMemberId = Console.ReadLine();
+            while (!int.TryParse(inputMemberId, out memberId))
+            {
+                Console.WriteLine("Invalid Input! Enter a number:");
+                inputMemberId = Console.ReadLine();
+            }
+            if (FindMemberById(memberId) != null)
+            {
+            }
+
+            return new Trainer(newId, name, specialty, salary);
+        }
+        public static void AddBooking()
+        {
+
+        }
+
     }
 }

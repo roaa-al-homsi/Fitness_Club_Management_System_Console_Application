@@ -328,7 +328,17 @@ namespace FitnessClubManagementSystem.ManagementSystem
             string[] stObject = stLine.Split(';');
             return new Booking(Convert.ToInt32(stObject[0]), Convert.ToInt32(stObject[1]), Convert.ToInt32(stObject[2]), Convert.ToDateTime(stObject[3]), stObject[4]);
         }
+        public static string ConvertBookingObjectToStLine(Booking booking, char seperatore = ';')
+        {
+            string StLBooking = "";
+            StLBooking = booking.Id.ToString() + seperatore;
+            StLBooking += booking.MemberId.ToString() + seperatore;
+            StLBooking += booking.ActivityId.ToString() + seperatore;
+            StLBooking += booking.Date.ToString() + seperatore;
+            StLBooking += booking.Status;
 
+            return StLBooking;
+        }
         public static Booking[] LoadDataFromFileToArrayBookings()
         {
             StreamReader fr = null;
@@ -372,6 +382,31 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
 
             return localBookings;
+        }
+        public static bool SaveBooking(string BookingRecord)//Add new Booking to file.
+        {
+            StreamWriter fw = null;
+
+            try
+            {
+                fw = new StreamWriter(FileNameBookings, true);
+
+                fw.WriteLine(BookingRecord);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            finally
+            {
+                if (fw != null)
+                {
+                    fw.Close();
+                }
+            }
         }
 
     }
