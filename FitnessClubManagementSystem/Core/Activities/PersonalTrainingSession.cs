@@ -20,10 +20,8 @@ namespace FitnessClubManagementSystem.Core.Activities
         }
         public override double CalculateSessionCost()
         {
-            double cost = HourlyRate * (DurationMinutes /60.0);
+            return HourlyRate * (DurationMinutes /60.0);
           
-            return cost;
-
         }
         public override void PrintInfo()
         {
