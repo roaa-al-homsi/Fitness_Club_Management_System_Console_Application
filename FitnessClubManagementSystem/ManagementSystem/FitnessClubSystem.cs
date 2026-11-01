@@ -143,7 +143,7 @@ namespace FitnessClubManagementSystem.Core
                                       $"Email: {premiumMember.Email,-30} | " +
                                       $"Join Date: {premiumMember.JoinDate.ToShortDateString(),-10} | " +
                                       $"Type: {"PREMIUM",-8} | " +
-                                      $"Has Personal Training: {premiumMember.HasPersonalTraining,-5} | " +
+                                      $"Has Personal Training: {premiumMember.HasPersonalTrainer,-5} | " +
                                       $"Number Guest Passes: {premiumMember.GuestPasses,-3} | " +
                                       $"Monthly Fee: {premiumMember.CalculateMonthlyFee()}"
                                      );

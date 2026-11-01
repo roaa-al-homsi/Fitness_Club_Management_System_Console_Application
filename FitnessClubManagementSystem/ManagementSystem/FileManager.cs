@@ -53,7 +53,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             {
                 PremiumMember premiumMember = (PremiumMember)member;
                 type = "PREMIUM";
-                string textHasPersonalTrainer = premiumMember.HasPersonalTraining ? "True" : "False";
+                string textHasPersonalTrainer = premiumMember.HasPersonalTrainer ? "True" : "False";
                 textObjectMember += type + seperator;
                 textObjectMember += textHasPersonalTrainer + seperator;
                 textObjectMember += premiumMember.GuestPasses.ToString();
