@@ -36,16 +36,78 @@ namespace FitnessClubManagementSystem.Core
             //in method LoadDataFromFileToArrayMembers it's load all members from file to members array an update to NumberMembersInArray.
             Members = FileManager.LoadDataFromFileToArrayMembers();
 
+            //in method LoadDataFromFileToArrayTrainers it's load all Trainers from file to Trainers array an update to NumberTrainersInArray
+            Trainers = FileManager.LoadDataFromFileToArrayTrainers();
+
             //in method LoadDataFromFileToArrayActivities it's load all activities from file to activites array an update to NumberActivitiesInArray.
             Activities = FileManager.LoadDataFromFileToArrayActivities();
 
-            //in method LoadDataFromFileToArrayTrainers it's load all Trainers from file to Trainers array an update to NumberTrainersInArray
-            Trainers = FileManager.LoadDataFromFileToArrayTrainers();
 
             //in method LoadDataFromFileToArrayTrainers it's load all Trainers from file to Trainers array an update to NumberTrainersInArray
             Bookings = FileManager.LoadDataFromFileToArrayBookings();
 
+            //Her responsibility goes through the activities, looking for personal training sessions, and then assigning each session to the trainer who owns the TrainerId.
+            AssignSessionsToTrainers();
+
+            //ShowAssignedSessionsForAllTrainers();
         }
+
+        //Her responsibility goes through the activities, looking for personal training sessions, and then assigning each session to the trainer who owns the TrainerId.
+        public static void AssignSessionsToTrainers()
+        {
+            for (int i = 0; i < NumberTrainersInArray; i++)
+            {
+                Trainers[i].NumSessionsAssignedInArray = 0;
+            }
+
+            for (int i = 0; i < NumberActivityInArray; i++)
+            {
+                if (Activities[i] is PersonalTrainingSession)
+                {
+                    PersonalTrainingSession session =
+                        (PersonalTrainingSession)Activities[i];
+
+                    Trainer trainer = _FindTrainer(session.TrainerId);
+
+                    if (trainer != null)
+                    {
+                        if (!trainer.AssignSession(session))
+                        {
+                            Console.WriteLine(
+                                $"Cannot assign session {session.Id} to trainer {trainer.Id}. Trainer is full.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine(
+                            $"Trainer with ID {session.TrainerId} was not found for session {session.Id}.");
+                    }
+                }
+            }
+        }
+
+        //public static void ShowAssignedSessionsForAllTrainers()
+        //{
+        //    for (int i = 0; i < NumberTrainersInArray; i++)
+        //    {
+        //        Trainer trainer = Trainers[i];
+
+        //        Console.WriteLine($"\nTrainer ID: {trainer.Id} - Name: {trainer.Name}");
+
+        //        if (trainer.NumSessionsAssignedInArray == 0)
+        //        {
+        //            Console.WriteLine("No sessions assigned.");
+        //            continue;
+        //        }
+
+        //        Console.WriteLine("Assigned Sessions IDs:");
+
+        //        for (int j = 0; j < trainer.NumSessionsAssignedInArray; j++)
+        //        {
+        //            Console.WriteLine($"Session ID: {trainer.SessionsAssigned[j].Id}");
+        //        }
+        //    }
+        //}
 
         /* Member */
         public static void ShowAllMembers()
