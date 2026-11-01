@@ -142,7 +142,8 @@ namespace FitnessClubManagementSystem.Screens
         }
         static void _Exit()
         {
-
+            Console.WriteLine("Exiting the program...");
+            Environment.Exit(0);
         }
 
         static void _PerformMainMenuOptions(short Choice)
@@ -207,7 +208,6 @@ namespace FitnessClubManagementSystem.Screens
                     break;
                 case 12:
                     _Exit();
-                    _GoBackToMainMenu();
                     break;
 
 
