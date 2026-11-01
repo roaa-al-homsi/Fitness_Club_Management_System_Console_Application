@@ -137,7 +137,8 @@ namespace FitnessClubManagementSystem.Screens
         }
         static void _ShowProjectedMonthlyRevenue()
         {
-
+            _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "SHOW PROJECTED MONTHLY REVENUE SCREEN");
+            FitnessClubSystem.ShowProjectedMonthlyRevenue();
         }
         static void _Exit()
         {
