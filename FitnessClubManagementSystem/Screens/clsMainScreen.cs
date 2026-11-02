@@ -23,12 +23,7 @@ namespace FitnessClubManagementSystem.Screens
             return Choice;
 
         }
-        void _GoBackToMainMenu()
-        {
-            Console.WriteLine("\nPress any key to go main menu....");
-            Console.ReadKey();
-            ShowMainMenu();
-        }
+       
         static void _DrawHeaderScreen(string Title, string SubTitle = " ")
         {
             Console.WriteLine("                                     **************************************");
@@ -44,38 +39,50 @@ namespace FitnessClubManagementSystem.Screens
             Console.WriteLine("                                     **************************************");
         }
 
-
         public void ShowMainMenu()
         {
+            // Load data only once when the program starts.
             system.LoadingDataApplication();
 
+            short choice = 0;
 
-            Console.Clear();
-            _DrawHeaderScreen("Fitness Club Management System");
+            do
+            {
+                Console.Clear();
 
-            Console.WriteLine("                                     **************************************");
-            Console.WriteLine("                                                 Main Menu ");
-            Console.WriteLine("                                     **************************************");
+                _DrawHeaderScreen("Fitness Club Management System");
 
-            Console.WriteLine("                     [1]:  Show all members.");
-            Console.WriteLine("                     [2]:  Show all activity.");
-            Console.WriteLine("                     [3]:  Show all trainers.");
-            Console.WriteLine("                     [4]:  Show all bookings.");
-            Console.WriteLine("                     [5]:  Search for a member by ID.");
-            Console.WriteLine("                     [6]:  Search for a activity by ID.");
-            Console.WriteLine("                     [7]:  Add a new member.");
-            Console.WriteLine("                     [8]:  Add a new an activity.");
-            Console.WriteLine("                     [9]:  Add a new an trainer.");
-            Console.WriteLine("                     [10]: Add a new an booking.");
-            Console.WriteLine("                     [11]: Show projected monthly revenue.");
-            Console.WriteLine("                     [12]: Exit");
-            Console.WriteLine("                                     **************************************");
+                Console.WriteLine("                                     **************************************");
+                Console.WriteLine("                                                 Main Menu ");
+                Console.WriteLine("                                     **************************************");
 
-            _PerformMainMenuOptions(_ReadMainMenuOption());
+                Console.WriteLine("                     [1]:  Show all members.");
+                Console.WriteLine("                     [2]:  Show all activity.");
+                Console.WriteLine("                     [3]:  Show all trainers.");
+                Console.WriteLine("                     [4]:  Show all bookings.");
+                Console.WriteLine("                     [5]:  Search for a member by ID.");
+                Console.WriteLine("                     [6]:  Search for a activity by ID.");
+                Console.WriteLine("                     [7]:  Add a new member.");
+                Console.WriteLine("                     [8]:  Add a new an activity.");
+                Console.WriteLine("                     [9]:  Add a new an trainer.");
+                Console.WriteLine("                     [10]: Add a new an booking.");
+                Console.WriteLine("                     [11]: Show projected monthly revenue.");
+                Console.WriteLine("                     [12]: Exit");
 
+                Console.WriteLine("                                     **************************************");
 
+                choice = _ReadMainMenuOption();
+
+                _PerformMainMenuOptions(choice);
+
+                if (choice != 12)
+                {
+                    Console.WriteLine("\nPress any key to go to main menu....");
+                    Console.ReadKey();
+                }
+
+            } while (choice != 12);
         }
-       
         void _ShowAllMembers()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL MEMBER SCREEN");
@@ -97,7 +104,7 @@ namespace FitnessClubManagementSystem.Screens
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL BOOKINGS SCREEN");
             system.ShowAllBookings();
         }
-       
+
         void _FindMemberById()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "FIND A MEMBER SCREEN");
@@ -108,7 +115,7 @@ namespace FitnessClubManagementSystem.Screens
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "FIND A ACTIVITY SCREEN");
             system.FindActivityById();
         }
-       
+
         void _AddMember()
         {
             _DrawHeaderScreen("Fitness Club Management System", "ADDING NEW MEMBER SCREEN");
@@ -130,12 +137,12 @@ namespace FitnessClubManagementSystem.Screens
             system.AddBooking();
 
         }
-        
+
         void _GetProjectedMonthlyRevenue()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "SHOW PROJECTED MONTHLY REVENUE SCREEN");
             Console.WriteLine($"Projected Monthly Revenue : {system.GetProjectedMonthlyRevenue()}");
-          
+
         }
         static void _Exit()
         {
@@ -150,71 +157,55 @@ namespace FitnessClubManagementSystem.Screens
                 case 1:
                     Console.Clear();
                     _ShowAllMembers();
-                    _GoBackToMainMenu();
                     break;
 
                 case 2:
                     Console.Clear();
                     _ShowAllActivities();
-                    _GoBackToMainMenu();
                     break;
                 case 3:
                     Console.Clear();
                     _ShowAllTrainers();
-                    _GoBackToMainMenu();
                     break;
                 case 4:
                     Console.Clear();
                     _ShowAllBookings();
-                    _GoBackToMainMenu();
                     break;
                 case 5:
                     Console.Clear();
                     _FindMemberById();
-                    _GoBackToMainMenu();
                     break;
                 case 6:
                     Console.Clear();
                     _FindActivityById();
-                    _GoBackToMainMenu();
                     break;
                 case 7:
                     Console.Clear();
                     _AddMember();
-                    _GoBackToMainMenu();
                     break;
                 case 8:
                     Console.Clear();
                     _AddActivity();
-                    _GoBackToMainMenu();
                     break;
                 case 9:
                     Console.Clear();
                     _AddTrainer();
-                    _GoBackToMainMenu();
                     break;
                 case 10:
                     Console.Clear();
                     _AddBooking();
-                    _GoBackToMainMenu();
                     break;
                 case 11:
                     Console.Clear();
                     _GetProjectedMonthlyRevenue();
-                    _GoBackToMainMenu();
                     break;
                 case 12:
                     _Exit();
                     break;
 
-
-
                 default:
                     break;
             }
-
-
-
         }
 
     }
