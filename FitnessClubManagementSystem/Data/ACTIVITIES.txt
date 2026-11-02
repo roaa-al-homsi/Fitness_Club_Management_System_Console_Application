@@ -5,3 +5,4 @@
 5;Morning Yoga;20;20;GROUP;Sara Khalil;Beginner
 6;Aerobics;30;20;PT;102;35
 7;Yoga;30;20;GROUP;Abdo;Advanced
+8;Yoga;30;20;PT;102;35
