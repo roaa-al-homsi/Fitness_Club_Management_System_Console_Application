@@ -61,7 +61,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
             return textObjectMember;
         }
 
-        public static Member[] LoadDataFromFileToArrayMembers()
+        //Load Data From File To Array Members 
+        public static Member[] LoadMembers()
         {
             StreamReader fr = null;
             Member[] localMembers = new Member[FitnessClubSystem.MaxMembers];
@@ -138,7 +139,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
         }
 
-        public static Activity[] LoadDataFromFileToArrayActivities()
+        //Load Data From File To Array Activities
+        public static Activity[] LoadActivities()
         {
             StreamReader fr = null;
             Activity[] localActivities = new Activity[FitnessClubSystem.MaxActivity];
@@ -240,8 +242,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
             string[] lineInTrainersFile = stLine.Split(seperatore);
             return new Trainer(Convert.ToInt32(lineInTrainersFile[0]), lineInTrainersFile[1], lineInTrainersFile[2], Convert.ToDouble(lineInTrainersFile[3]));
         }
-
-        public static Trainer[] LoadDataFromFileToArrayTrainers()
+        //Load Data From File To Array Trainers
+        public static Trainer[] LoadTrainers()
         {
             StreamReader fr = null;
 
@@ -339,7 +341,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             return StLBooking;
         }
-        public static Booking[] LoadDataFromFileToArrayBookings()
+        //Load Data From File To Array Bookings
+        public static Booking[] LoadBookings()
         {
             StreamReader fr = null;
 

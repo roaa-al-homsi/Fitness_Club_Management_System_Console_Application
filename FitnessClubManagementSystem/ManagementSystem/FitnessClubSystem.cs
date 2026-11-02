@@ -34,17 +34,17 @@ namespace FitnessClubManagementSystem.Core
         public static void LoadingDataApplication()
         {
             //in method LoadDataFromFileToArrayMembers it's load all members from file to members array an update to NumberMembersInArray.
-            Members = FileManager.LoadDataFromFileToArrayMembers();
+            Members = FileManager.LoadMembers();
 
             //in method LoadDataFromFileToArrayTrainers it's load all Trainers from file to Trainers array an update to NumberTrainersInArray
-            Trainers = FileManager.LoadDataFromFileToArrayTrainers();
+            Trainers = FileManager.LoadTrainers();
 
             //in method LoadDataFromFileToArrayActivities it's load all activities from file to activites array an update to NumberActivitiesInArray.
-            Activities = FileManager.LoadDataFromFileToArrayActivities();
+            Activities = FileManager.LoadActivities();
 
 
             //in method LoadDataFromFileToArrayTrainers it's load all Trainers from file to Trainers array an update to NumberTrainersInArray
-            Bookings = FileManager.LoadDataFromFileToArrayBookings();
+            Bookings = FileManager.LoadBookings();
 
             //Her responsibility goes through the activities, looking for personal training sessions, and then assigning each session to the trainer who owns the TrainerId.
             AssignSessionsToTrainers();
