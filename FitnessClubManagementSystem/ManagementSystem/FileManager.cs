@@ -66,6 +66,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
         {
             StreamReader fr = null;
             Member[] localMembers = new Member[FitnessClubSystem.MaxMembers];
+
             try
             {
                 fr = new StreamReader(MembersFile);
@@ -80,13 +81,13 @@ namespace FitnessClubManagementSystem.ManagementSystem
                         break;
                     }
 
-                    localMembers[FitnessClubSystem.MemberCount] = _ConvertStLineToMemberObject(line);
+                    localMembers[FitnessClubSystem.MemberCount] =
+                        _ConvertStLineToMemberObject(line);
+
                     FitnessClubSystem.MemberCount++;
 
                     line = fr.ReadLine();
                 }
-
-                fr.Close();
             }
             catch (NullReferenceException e)
             {
@@ -97,23 +98,26 @@ namespace FitnessClubManagementSystem.ManagementSystem
             {
                 Console.WriteLine(e.Message);
             }
+            finally
+            {
+                if (fr != null)
+                {
+                    fr.Close();
+                }
+            }
 
             return localMembers;
         }
-
         public static bool SaveMember(string memberRecord)//Add member record to file.
         {
             StreamWriter fw = null;
 
             try
             {
-                // Console.WriteLine("Save path: " + Path.GetFullPath(FileNameMembers));
-
                 fw = new StreamWriter(MembersFile, true);
 
                 fw.WriteLine(memberRecord);
 
-                fw.Close();
                 return true;
             }
             catch (Exception e)
@@ -121,8 +125,14 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 Console.WriteLine(e.Message);
                 return false;
             }
+            finally
+            {
+                if (fw != null)
+                {
+                    fw.Close();
+                }
+            }
         }
-
         /* Activity */
         static Activity _ConvertStLineToActivityObject(string stLine, char seperatore = ';')
         {
@@ -144,6 +154,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
         {
             StreamReader fr = null;
             Activity[] localActivities = new Activity[FitnessClubSystem.MaxActivity];
+
             try
             {
                 fr = new StreamReader(ActivitiesFile);
@@ -157,18 +168,19 @@ namespace FitnessClubManagementSystem.ManagementSystem
                     {
                         break;
                     }
+
                     Activity activity = _ConvertStLineToActivityObject(line);
+
                     if (activity == null)
-                    {   //still localActivities is empty there is no any activity inside it.
-                        return localActivities;
+                    {
+                        break;
                     }
+
                     localActivities[FitnessClubSystem.ActivityCount] = activity;
                     FitnessClubSystem.ActivityCount++;
 
                     line = fr.ReadLine();
                 }
-
-                fr.Close();
             }
             catch (NullReferenceException e)
             {
@@ -178,6 +190,13 @@ namespace FitnessClubManagementSystem.ManagementSystem
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                if (fr != null)
+                {
+                    fr.Close();
+                }
             }
 
             return localActivities;
@@ -214,19 +233,16 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
         }
 
-        public static bool SaveActivity(string activityRecord)//Add activity record to file.
+        public static bool SaveActivity(string activityRecord)
         {
             StreamWriter fw = null;
 
             try
             {
-                // Console.WriteLine("Save path: " + Path.GetFullPath(FileNameMembers));
-
                 fw = new StreamWriter(ActivitiesFile, true);
 
                 fw.WriteLine(activityRecord);
 
-                fw.Close();
                 return true;
             }
             catch (Exception e)
@@ -234,7 +250,15 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 Console.WriteLine(e.Message);
                 return false;
             }
+            finally
+            {
+                if (fw != null)
+                {
+                    fw.Close();
+                }
+            }
         }
+
 
         /* Trainers */
         static Trainer _ConvertStLineToTrainerObject(string stLine, char seperatore = ';')
