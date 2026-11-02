@@ -11,8 +11,8 @@ namespace FitnessClubManagementSystem
     {
         static void Main(string[] args)
         {
-
-            clsMainScreen.ShowMainMenu();
+            clsMainScreen mainScreen = new clsMainScreen();
+            mainScreen.ShowMainMenu();
         }
     }
 }

@@ -12,7 +12,9 @@ namespace FitnessClubManagementSystem.Screens
 {
     public class clsMainScreen
     {
-        static short _ReadMainMenuOption()
+        FitnessClubSystem system = new FitnessClubSystem();
+
+        short _ReadMainMenuOption()
         {
             short Choice = 0;
             Console.WriteLine($"{" ",-37}Please Chose What Do You Want To Do [1 To 12]?");
@@ -21,7 +23,7 @@ namespace FitnessClubManagementSystem.Screens
             return Choice;
 
         }
-        static void _GoBackToMainMenu()
+        void _GoBackToMainMenu()
         {
             Console.WriteLine("\nPress any key to go main menu....");
             Console.ReadKey();
@@ -43,9 +45,9 @@ namespace FitnessClubManagementSystem.Screens
         }
 
 
-        public static void ShowMainMenu()
+        public void ShowMainMenu()
         {
-            FitnessClubSystem.LoadingDataApplication();
+            system.LoadingDataApplication();
 
 
             Console.Clear();
@@ -73,63 +75,67 @@ namespace FitnessClubManagementSystem.Screens
 
 
         }
-        static void _ShowAllMembers()
+       
+        void _ShowAllMembers()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL MEMBER SCREEN");
-            FitnessClubSystem.ShowAllMembers();
+            system.ShowAllMembers();
 
         }
-        static void _ShowAllActivities()
+        void _ShowAllActivities()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL ACTIVITIES SCREEN");
-            FitnessClubSystem.ShowAllActivity();
+            system.ShowAllActivity();
         }
-
-        static void _ShowAllTrainers()
+        void _ShowAllTrainers()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL TRAINERS SCREEN");
-            FitnessClubSystem.ShowAllTrainers();
+            system.ShowAllTrainers();
         }
-        static void _ShowAllBookings()
+        void _ShowAllBookings()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL BOOKINGS SCREEN");
-            FitnessClubSystem.ShowAllBookings();
+            system.ShowAllBookings();
         }
-        static void _FindMemberById()
+       
+        void _FindMemberById()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "FIND A MEMBER SCREEN");
-            FitnessClubSystem.FindMemberById();
+            system.FindMemberById();
         }
-        static void _FindActivityById()
+        void _FindActivityById()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "FIND A ACTIVITY SCREEN");
-            FitnessClubSystem.FindActivityById();
+            system.FindActivityById();
         }
-        static void _AddMember()
+       
+        void _AddMember()
         {
             _DrawHeaderScreen("Fitness Club Management System", "ADDING NEW MEMBER SCREEN");
-            FitnessClubSystem.AddMember();
+            system.AddMember();
         }
-        static void _AddActivity()
+        void _AddActivity()
         {
             _DrawHeaderScreen("Fitness Club Management System", "ADDING NEW ACTIVITY SCREEN");
-            FitnessClubSystem.AddActivity();
+            system.AddActivity();
         }
-        static void _AddTrainer()
+        void _AddTrainer()
         {
             _DrawHeaderScreen("Fitness Club Management System", "ADDING NEW TRAINER SCREEN");
-            FitnessClubSystem.AddTrainer();
+            system.AddTrainer();
         }
-        static void _AddBooking()
+        void _AddBooking()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "ADD NEW BOOKING SCREEN");
-            FitnessClubSystem.AddBooking();
+            system.AddBooking();
 
         }
-        static void _GetProjectedMonthlyRevenue()
+        
+        void _GetProjectedMonthlyRevenue()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "SHOW PROJECTED MONTHLY REVENUE SCREEN");
-            FitnessClubSystem.GetProjectedMonthlyRevenue();
+            Console.WriteLine($"Projected Monthly Revenue : {system.GetProjectedMonthlyRevenue()}");
+          
         }
         static void _Exit()
         {
@@ -137,7 +143,7 @@ namespace FitnessClubManagementSystem.Screens
             Environment.Exit(0);
         }
 
-        static void _PerformMainMenuOptions(short Choice)
+        void _PerformMainMenuOptions(short Choice)
         {
             switch (Choice)
             {
@@ -210,9 +216,6 @@ namespace FitnessClubManagementSystem.Screens
 
 
         }
-
-
-
 
     }
 }
