@@ -12,10 +12,10 @@ namespace FitnessClubManagementSystem.ManagementSystem
 {
     public static class FileManager
     {
-        const string FileNameMembers = @"Data\MEMBERS.txt";
-        const string FileNameActivities = @"Data\ACTIVITIES.txt";
-        const string FileNameTrainers = @"Data\TRAINERS.txt";
-        const string FileNameBookings = @"Data\BOOKINGS.txt";
+        const string MembersFile = @"Data\MEMBERS.txt";
+        const string ActivitiesFile = @"Data\ACTIVITIES.txt";
+        const string TrainersFile = @"Data\TRAINERS.txt";
+        const string BookingsFile = @"Data\BOOKINGS.txt";
 
         /* Member */
         static Member _ConvertStLineToMemberObject(string stLine, char seperatore = ';')
@@ -68,20 +68,20 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Member[] localMembers = new Member[FitnessClubSystem.MaxMembers];
             try
             {
-                fr = new StreamReader(FileNameMembers);
+                fr = new StreamReader(MembersFile);
 
                 string line = fr.ReadLine();
-                FitnessClubSystem.NumberMembersInArray = 0;
+                FitnessClubSystem.MemberCount = 0;
 
                 while (line != null)
                 {
-                    if (FitnessClubSystem.NumberMembersInArray >= FitnessClubSystem.MaxMembers)
+                    if (FitnessClubSystem.MemberCount >= FitnessClubSystem.MaxMembers)
                     {
                         break;
                     }
 
-                    localMembers[FitnessClubSystem.NumberMembersInArray] = _ConvertStLineToMemberObject(line);
-                    FitnessClubSystem.NumberMembersInArray++;
+                    localMembers[FitnessClubSystem.MemberCount] = _ConvertStLineToMemberObject(line);
+                    FitnessClubSystem.MemberCount++;
 
                     line = fr.ReadLine();
                 }
@@ -109,7 +109,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             {
                 // Console.WriteLine("Save path: " + Path.GetFullPath(FileNameMembers));
 
-                fw = new StreamWriter(FileNameMembers, true);
+                fw = new StreamWriter(MembersFile, true);
 
                 fw.WriteLine(memberRecord);
 
@@ -146,14 +146,14 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Activity[] localActivities = new Activity[FitnessClubSystem.MaxActivity];
             try
             {
-                fr = new StreamReader(FileNameActivities);
+                fr = new StreamReader(ActivitiesFile);
 
                 string line = fr.ReadLine();
-                FitnessClubSystem.NumberActivityInArray = 0;
+                FitnessClubSystem.ActivityCount = 0;
 
                 while (line != null)
                 {
-                    if (FitnessClubSystem.NumberActivityInArray >= FitnessClubSystem.MaxActivity)
+                    if (FitnessClubSystem.ActivityCount >= FitnessClubSystem.MaxActivity)
                     {
                         break;
                     }
@@ -162,8 +162,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
                     {   //still localActivities is empty there is no any activity inside it.
                         return localActivities;
                     }
-                    localActivities[FitnessClubSystem.NumberActivityInArray] = activity;
-                    FitnessClubSystem.NumberActivityInArray++;
+                    localActivities[FitnessClubSystem.ActivityCount] = activity;
+                    FitnessClubSystem.ActivityCount++;
 
                     line = fr.ReadLine();
                 }
@@ -222,7 +222,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             {
                 // Console.WriteLine("Save path: " + Path.GetFullPath(FileNameMembers));
 
-                fw = new StreamWriter(FileNameActivities, true);
+                fw = new StreamWriter(ActivitiesFile, true);
 
                 fw.WriteLine(activityRecord);
 
@@ -251,24 +251,24 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fr = new StreamReader(FileNameTrainers);
+                fr = new StreamReader(TrainersFile);
 
                 string line = fr.ReadLine();
 
-                FitnessClubSystem.NumberTrainersInArray = 0;
+                FitnessClubSystem.TrainerCount = 0;
 
                 while (line != null)
                 {
-                    if (FitnessClubSystem.NumberTrainersInArray >= FitnessClubSystem.MaxTrainers)
+                    if (FitnessClubSystem.TrainerCount >= FitnessClubSystem.MaxTrainers)
                     {
                         break;
                     }
 
                     Trainer trainer = _ConvertStLineToTrainerObject(line);
 
-                    localTrainers[FitnessClubSystem.NumberTrainersInArray] = trainer;
+                    localTrainers[FitnessClubSystem.TrainerCount] = trainer;
 
-                    FitnessClubSystem.NumberTrainersInArray++;
+                    FitnessClubSystem.TrainerCount++;
 
                     line = fr.ReadLine();
                 }
@@ -303,7 +303,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fw = new StreamWriter(FileNameTrainers, true);
+                fw = new StreamWriter(TrainersFile, true);
 
                 fw.WriteLine(TrainerRecord);
 
@@ -350,24 +350,24 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fr = new StreamReader(FileNameBookings);
+                fr = new StreamReader(BookingsFile);
 
                 string line = fr.ReadLine();
 
-                FitnessClubSystem.NumberBookingsInArray = 0;
+                FitnessClubSystem.BookingCount = 0;
 
                 while (line != null)
                 {
-                    if (FitnessClubSystem.NumberBookingsInArray >= FitnessClubSystem.MaxBookings)
+                    if (FitnessClubSystem.BookingCount >= FitnessClubSystem.MaxBookings)
                     {
                         break;
                     }
 
                     Booking booking = _ConvertStLineToBookingObject(line);
 
-                    localBookings[FitnessClubSystem.NumberBookingsInArray] = booking;
+                    localBookings[FitnessClubSystem.BookingCount] = booking;
 
-                    FitnessClubSystem.NumberBookingsInArray++;
+                    FitnessClubSystem.BookingCount++;
 
                     line = fr.ReadLine();
                 }
@@ -392,7 +392,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fw = new StreamWriter(FileNameBookings, true);
+                fw = new StreamWriter(BookingsFile, true);
 
                 fw.WriteLine(BookingRecord);
 
