@@ -130,8 +130,14 @@ namespace FitnessClubManagementSystem.Core
             bool hasPersonalTrainer = false;
             int newId = NumberMembersInArray + 1;
 
-            Console.WriteLine("What type of new member is it  [STANDARD OR PREMIUM]?");
+            Console.WriteLine("What type of new member is it STANDARD OR PREMIUM [s | p]?");
             type = Console.ReadLine();
+            while (type != "s" && type != "p")
+            {
+                Console.WriteLine("INVALID INPUT!!! ,ENTER s OR p ONLY ");
+                type = Console.ReadLine();
+            }
+
 
             Console.WriteLine("Enter member name : ");
             name = Console.ReadLine();
@@ -150,24 +156,40 @@ namespace FitnessClubManagementSystem.Core
 
             switch (type)
             {
-                case "STANDARD":
+                case "s":
 
                     Console.WriteLine("Enter number freeze days used : ");
-                    freezeDaysUsed = int.Parse(Console.ReadLine());
+                    string textfreezeDaysUsed = Console.ReadLine();
+                    while (!int.TryParse(textfreezeDaysUsed, out freezeDaysUsed) || freezeDaysUsed < 0)
+                    {
+                        Console.WriteLine("INVALID INPUT!!!, ENTER A CORRECT NUMBER.");
+                        textfreezeDaysUsed = Console.ReadLine();
+                    }
 
                     StandardMember standardMember = new StandardMember(newId, name, email, joinDate, freezeDaysUsed);
 
                     return standardMember;
 
-                case "PREMIUM":
-                    Console.WriteLine("Has personal training? [Yes Or No]");
+                case "p":
+                    Console.WriteLine("Has personal training? [y Or n]");
                     string textHasPersonalTraining = Console.ReadLine();
 
-                    hasPersonalTrainer = textHasPersonalTraining == "Yes" || textHasPersonalTraining == "yes" ? true : false;
+                    while(textHasPersonalTraining !="y" && textHasPersonalTraining!="n")
+                    {
+                        Console.WriteLine("INVALID INPUT!!!,ENTER y OR n ONLY..");
+                         textHasPersonalTraining = Console.ReadLine();
+                    }
+
+                    hasPersonalTrainer = textHasPersonalTraining == "y" ? true : false;
 
                     Console.WriteLine("Enter number guest passes: ");
-                    guestPasses = int.Parse(Console.ReadLine());
+                   string textguestPasses = Console.ReadLine();
 
+                    while (!int.TryParse(textguestPasses, out guestPasses) || guestPasses < 0)
+                    {
+                        Console.WriteLine("INVALID INPUT!!!,ENTER A CORRECT NUMBER!!");
+                        textguestPasses = Console.ReadLine();
+                    }
 
                     PremiumMember premiumMember = new PremiumMember(newId, name, email, joinDate, hasPersonalTrainer, guestPasses);
 
@@ -297,7 +319,7 @@ namespace FitnessClubManagementSystem.Core
             Console.WriteLine("Enter activity name : ");
             name = Console.ReadLine();
 
-     
+
             Console.WriteLine("Enter duration minutes : ");
             string inputeDurationMinutes = Console.ReadLine();
             while (!int.TryParse(inputeDurationMinutes, out durationMinutes) || durationMinutes <= 0)
@@ -332,8 +354,8 @@ namespace FitnessClubManagementSystem.Core
                     return new GroupClass(newId, name, durationMinutes, capacity, instructorName, difficultyLevel);
 
                 case "pt":
-                   
-                    if(NumberTrainersInArray==0)
+
+                    if (NumberTrainersInArray == 0)
                     {
                         Console.WriteLine("THERE IS NO ANY TRAINER IN SYSTEM");
                         return null;
@@ -349,7 +371,7 @@ namespace FitnessClubManagementSystem.Core
                         trainerId = _ReadIdTrainer();
                     }
                     Trainer trainer = _FindTrainer(trainerId);
-                    if(trainer==null)
+                    if (trainer == null)
                     {
                         return null;
                     }
@@ -402,14 +424,14 @@ namespace FitnessClubManagementSystem.Core
                     Trainer trainer = _FindTrainer(personalTraining.TrainerId);
                     if (trainer != null)
                     {
-                        if(!trainer.AssignSession(personalTraining))
+                        if (!trainer.AssignSession(personalTraining))
                         {
                             Console.WriteLine("Failed to assign session to trainer.");
 
                         }
 
                     }
-      
+
                 }
             }
             else
@@ -672,7 +694,7 @@ namespace FitnessClubManagementSystem.Core
             }
             return monthlyRevenue;
         }
-        public static void  ShowProjectedMonthlyRevenue()
+        public static void ShowProjectedMonthlyRevenue()
         {
             Console.WriteLine($"Projected Monthly Revenue : {CalculateProjectedMonthlyRevenue()}");
         }
