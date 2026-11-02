@@ -563,7 +563,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 inputDate = Console.ReadLine();
             }
 
-            Console.WriteLine("Enter Status:");
+            Console.WriteLine("Enter Status: [Confirmed | Cancelled | InProgress] ");
             status = Console.ReadLine();
             while (status != "Confirmed" && status != "Cancelled" && status != "InProgress")
             {
@@ -600,11 +600,6 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 Console.WriteLine("Fail Saving Booking To File!!!");
 
             }
-
-
-
-
-
         }
 
 
