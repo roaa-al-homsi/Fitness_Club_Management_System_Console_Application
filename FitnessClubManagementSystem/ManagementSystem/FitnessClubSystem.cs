@@ -684,7 +684,7 @@ namespace FitnessClubManagementSystem.Core
 
 
         /**/
-        static double CalculateProjectedMonthlyRevenue()
+        static double _CalculateProjectedMonthlyRevenue()
         {
             double monthlyRevenue = 0;
             for (int i = 0; i < NumberMembersInArray; i++)
@@ -694,9 +694,9 @@ namespace FitnessClubManagementSystem.Core
             }
             return monthlyRevenue;
         }
-        public static void ShowProjectedMonthlyRevenue()
+        public static void GetProjectedMonthlyRevenue()
         {
-            Console.WriteLine($"Projected Monthly Revenue : {CalculateProjectedMonthlyRevenue()}");
+            Console.WriteLine($"Projected Monthly Revenue : {_CalculateProjectedMonthlyRevenue()}");
         }
 
     }

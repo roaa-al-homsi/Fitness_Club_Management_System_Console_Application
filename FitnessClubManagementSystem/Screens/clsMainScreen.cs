@@ -12,15 +12,6 @@ namespace FitnessClubManagementSystem.Screens
 {
     public class clsMainScreen
     {
-        enum enMainMenuOptions
-        {
-            AllMembers = 1, AllActivity = 2, AllTrainers = 3,
-            AllBookings = 4, FindMember = 5, FindActivity = 6,
-            AddMember = 7, AddActivity = 8, AddTrainer = 9,
-            AddBooking = 10, ShowProjectedMonthlyRevenue = 11,
-            Exit = 12
-        }
-
         static short _ReadMainMenuOption()
         {
             short Choice = 0;
@@ -88,7 +79,7 @@ namespace FitnessClubManagementSystem.Screens
             FitnessClubSystem.ShowAllMembers();
 
         }
-        static void _ShowAllActivity()
+        static void _ShowAllActivities()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL ACTIVITIES SCREEN");
             FitnessClubSystem.ShowAllActivity();
@@ -135,10 +126,10 @@ namespace FitnessClubManagementSystem.Screens
             FitnessClubSystem.AddBooking();
 
         }
-        static void _ShowProjectedMonthlyRevenue()
+        static void _GetProjectedMonthlyRevenue()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "SHOW PROJECTED MONTHLY REVENUE SCREEN");
-            FitnessClubSystem.ShowProjectedMonthlyRevenue();
+            FitnessClubSystem.GetProjectedMonthlyRevenue();
         }
         static void _Exit()
         {
@@ -158,7 +149,7 @@ namespace FitnessClubManagementSystem.Screens
 
                 case 2:
                     Console.Clear();
-                    _ShowAllActivity();
+                    _ShowAllActivities();
                     _GoBackToMainMenu();
                     break;
                 case 3:
@@ -203,7 +194,7 @@ namespace FitnessClubManagementSystem.Screens
                     break;
                 case 11:
                     Console.Clear();
-                    _ShowProjectedMonthlyRevenue();
+                    _GetProjectedMonthlyRevenue();
                     _GoBackToMainMenu();
                     break;
                 case 12:
