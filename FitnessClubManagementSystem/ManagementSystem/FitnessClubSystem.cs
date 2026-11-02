@@ -112,48 +112,13 @@ namespace FitnessClubManagementSystem.Core
         /* Member */
         public static void ShowAllMembers()
         {
-            // Members = FileManager.LoadDataFromFileToArrayMembers();
-
-            for (int i = 0; i <= NumberMembersInArray - 1; i++)
+            for (int i = 0; i < NumberMembersInArray; i++)
             {
-                if (Members[i] is StandardMember)
-                {
-                    StandardMember standardMember = (StandardMember)Members[i];//convert to standard object because localMembers it's type member and this member will be is standard or premium . 
-
-                    // Console.WriteLine($"ID: {standardMember.Id} | Name: {standardMember.Name}| Email : {standardMember.Email}  |  Join Date : {standardMember.JoinDate} | Type : STANDARD  | Freeze Days Used : {standardMember.FreezeDaysUsed} | Monthly Fee : {standardMember.CalculateMonthlyFee()}");
-                    Console.WriteLine(
-                                      $"ID: {standardMember.Id,-3} | " +
-                                      $"Name: {standardMember.Name,-15} | " +
-                                      $"Email: {standardMember.Email,-30} | " +
-                                      $"Join Date: {standardMember.JoinDate.ToShortDateString(),-10} | " +
-                                      $"Type: {"STANDARD",-8} | " +
-                                      $"Freeze Days Used: {standardMember.FreezeDaysUsed,-3} | " +
-                                      $"Monthly Fee: {standardMember.CalculateMonthlyFee()}"
-                                      );
-
-                }
-
-                else if (Members[i] is PremiumMember)
-                {
-                    PremiumMember premiumMember = (PremiumMember)Members[i];
-                    //  Console.WriteLine($"ID: {premiumMember.Id} | Name: {premiumMember.Name}   | Email : {premiumMember.Email}  |  Join Date : {premiumMember.JoinDate} | Type : PREMIUM  | Has Personal Training : {premiumMember.HasPersonalTraining} | Number Guest Passes : {premiumMember.GuestPasses} | Monthly Fee : {premiumMember.CalculateMonthlyFee()}");
-                    Console.WriteLine(
-                                      $"ID: {premiumMember.Id,-3} | " +
-                                      $"Name: {premiumMember.Name,-15} | " +
-                                      $"Email: {premiumMember.Email,-30} | " +
-                                      $"Join Date: {premiumMember.JoinDate.ToShortDateString(),-10} | " +
-                                      $"Type: {"PREMIUM",-8} | " +
-                                      $"Has Personal Training: {premiumMember.HasPersonalTrainer,-5} | " +
-                                      $"Number Guest Passes: {premiumMember.GuestPasses,-3} | " +
-                                      $"Monthly Fee: {premiumMember.CalculateMonthlyFee()}"
-                                     );
-                }
-
+                Members[i].PrintInfo();
             }
 
             Console.WriteLine("\n                                     **************************************");
-            Console.WriteLine("                                       TOTAL MEMBER IN SYSTEM: " + FitnessClubSystem.NumberMembersInArray);
-
+            Console.WriteLine("                                       TOTAL MEMBER IN SYSTEM: " + NumberMembersInArray);
         }
         static Member _ReadInfoNewMember()
         {

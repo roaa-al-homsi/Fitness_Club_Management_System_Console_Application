@@ -32,13 +32,15 @@ namespace FitnessClubManagementSystem.Core
         public override void PrintInfo()
         {
             base.PrintInfo();
-            Console.WriteLine($"Type Member : PREMIUM.");
-            string TextHasPersonalTraining = (HasPersonalTrainer) ? "Yes" : "NO";
-            Console.WriteLine($"Has Personal Training ?  {TextHasPersonalTraining}");
-            Console.WriteLine($"Number Guest Passes : {GuestPasses}");
-           
-        }
 
+            string textHasPersonalTraining = HasPersonalTrainer ? "Yes" : "No";
+
+            Console.WriteLine(
+                $" | Type: {"PREMIUM",-8} | " +
+                $"Has Personal Training: {textHasPersonalTraining,-5} | " +
+                $"Number Guest Passes: {GuestPasses,-3}"
+            );
+        }
 
 
     }

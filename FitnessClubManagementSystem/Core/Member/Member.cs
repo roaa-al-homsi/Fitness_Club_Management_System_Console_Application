@@ -28,19 +28,16 @@ namespace FitnessClubManagementSystem.Core
         }
         public virtual void PrintInfo()
         {
-            double MonthlyFee = this.CalculateMonthlyFee();
-            //  Console.WriteLine($"ID: {this.Id}\n , Name: {this.Name}, Email: {this.Email} , JoinDate: {this.JoinDate} , MonthlyFee : {MonthlyFee}");
-            Console.WriteLine("********* Member Info *********");
-            Console.WriteLine($"ID: {Id}");
-            Console.WriteLine($"Name: {Name}");
-            Console.WriteLine($"Email: {Email}");
-            Console.WriteLine($"JoinDate: {JoinDate}");
-            Console.WriteLine($"MonthlyFee: {MonthlyFee}");
-            Console.WriteLine("*******************************");
-
+            Console.Write(
+                $"ID: {Id,-3} | " +
+                $"Name: {Name,-15} | " +
+                $"Email: {Email,-30} | " +
+                $"Join Date: {JoinDate.ToShortDateString(),-10} | " +
+                $"Monthly Fee: {CalculateMonthlyFee(),-6}"
+            );
         }
 
-     
+
 
 
 

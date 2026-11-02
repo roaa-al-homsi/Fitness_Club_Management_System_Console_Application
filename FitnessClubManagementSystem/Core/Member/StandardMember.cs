@@ -27,9 +27,11 @@ namespace FitnessClubManagementSystem.Core
         public override void PrintInfo()
         {
             base.PrintInfo();
-            Console.WriteLine($"Type Member : STANDARD.");
-            Console.WriteLine($"Freeze Days Used is : {FreezeDaysUsed}");
 
+            Console.WriteLine(
+                $" | Type: {"STANDARD",-8} | " +
+                $"Freeze Days Used: {FreezeDaysUsed,-3}"
+            );
         }
     }
 }
