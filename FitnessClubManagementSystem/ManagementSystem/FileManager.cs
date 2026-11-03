@@ -47,6 +47,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             textObjectMember += member.JoinDate.ToShortDateString() + seperator;
 
             string type = "";
+            //I tried to use switch case, but is it not avaliable in this version.
             if (member is StandardMember)
             {
                 StandardMember standardMember = (StandardMember)member;

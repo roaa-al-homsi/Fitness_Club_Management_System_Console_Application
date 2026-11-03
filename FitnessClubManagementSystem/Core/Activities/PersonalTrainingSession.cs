@@ -12,6 +12,7 @@ namespace FitnessClubManagementSystem.Core.Activities
         public int TrainerId { get; set; }
         public double  HourlyRate { get; set; }
 
+        //create constructore Personal Training Session , and call construcror base class.
         public PersonalTrainingSession(int id, string name, int durationMinutes, int capacity, int trainerId, double hourlyRate) : base(id, name, durationMinutes, capacity)
         {
             this.TrainerId = trainerId;

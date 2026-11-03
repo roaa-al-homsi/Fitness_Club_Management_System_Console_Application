@@ -53,7 +53,6 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Console.WriteLine("\n                                     **************************************");
             Console.WriteLine("                                       TOTAL MEMBER IN SYSTEM: " + FitnessClubSystem.MemberCount);
         }
-
         // Reads member information and creates the appropriate member type.
         private Member _ReadInfoNewMember()
         {
@@ -135,28 +134,32 @@ namespace FitnessClubManagementSystem.ManagementSystem
                     return null;
             }
         }
-
         // Saves the new member to the file and updates the array if saving succeeds.
         public void AddMember()
         {
+            //check if Members array if full or not , in case is full , User can't add new member.
             if (FitnessClubSystem.MemberCount >= FitnessClubSystem.MaxMembers)
             {
                 Console.WriteLine("YOU CAN'T ADDING A NEW MEMBER TO FILE, FILE IS FULLING");
                 return;
             }
 
-
+            //Read info new member from user to add int array members and saving in file members.
             Member NewMember = _ReadInfoNewMember();
             if (NewMember == null)
             {
                 Console.WriteLine("INVALID INFO MEMBER, MEMBER IS NULL.");
                 return;
             }
+            //First:  convert object new member to string line with format Files .
+            //Second: after convert to string line , Save member in File MEMBERS.TXT 
+            //Third: in case saving successfull , we add member to array members and increment MemberCount , show success message.
             if (FileManager.SaveMember(FileManager.ConvertMemberObjectToStLine(NewMember)))
             {
                 Members[FitnessClubSystem.MemberCount] = NewMember;
                 ++FitnessClubSystem.MemberCount;
                 Console.WriteLine("Success Saving Member To File..");
+                //Print on console new Id for a new member and monthly fee for it .
                 Console.WriteLine($"Member saved with this Id {FitnessClubSystem.MemberCount}");
                 Console.WriteLine($"Monthly fee for a new member : {NewMember.CalculateMonthlyFee()}");
             }
@@ -168,12 +171,12 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
         }
 
+        //check if Member is exist in membership system.
         public bool IsMemberExist(int Id)
         {
             Member member = _FindMember(Id);
             return (member != null);
         }
-
         private Member _FindMember(int id)//Find Member By Id
         {
             for (int i = 0; i <= FitnessClubSystem.MemberCount - 1; i++)
@@ -187,7 +190,6 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             return null;
         }
-
         private int _ReadIdMember()
         {
             int id = -1;
@@ -198,7 +200,6 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
             return id;
         }
-
         public void FindMemberById()
         {
             Console.WriteLine($"Please, Enter Id member : ");

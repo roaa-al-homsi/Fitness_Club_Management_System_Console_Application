@@ -19,7 +19,7 @@ namespace FitnessClubManagementSystem.Core.Activities
 
         public override double CalculateSessionCost()
         {
-            return 0;
+            return 0; // include fee monthly.
 
         }
        

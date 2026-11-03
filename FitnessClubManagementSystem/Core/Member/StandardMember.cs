@@ -21,7 +21,7 @@ namespace FitnessClubManagementSystem.Core
         {
             const double mainFee = 30;
 
-            double fee = (FreezeDaysUsed == 0) ? mainFee - 5 : mainFee;//fee is 30 and discount is 5% 
+            double fee = (FreezeDaysUsed == 0) ? mainFee - 5 : mainFee;//fee is 30 and discount is 5
             return fee;
         }
         public override void PrintInfo()
