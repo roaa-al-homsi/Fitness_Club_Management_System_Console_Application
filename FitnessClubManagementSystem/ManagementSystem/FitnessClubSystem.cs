@@ -61,9 +61,7 @@ namespace FitnessClubManagementSystem.Core
             //Her responsibility goes through the activities, looking for personal training sessions, and then assigning each session to the trainer who owns the TrainerId.
             AssignSessionsToTrainers();
 
-            //ShowAssignedSessionsForAllTrainers();
-
-           
+            //ShowAssignedSessionsForAllTrainers();  
         }
 
         //Her responsibility goes through the activities, looking for personal training sessions, and then assigning each session to the trainer who owns the TrainerId.

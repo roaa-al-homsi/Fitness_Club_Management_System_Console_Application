@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|c:\\users\\ruaa\\source\\repos\\fitnessclubmanagementsystem\\fitnessclubmanagementsystem\\data\\activities.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|solutionrelative:fitnessclubmanagementsystem\\data\\activities.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|c:\\users\\ruaa\\source\\repos\\fitnessclubmanagementsystem\\fitnessclubmanagementsystem\\screens\\clsmainscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|solutionrelative:fitnessclubmanagementsystem\\screens\\clsmainscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|c:\\users\\ruaa\\source\\repos\\fitnessclubmanagementsystem\\fitnessclubmanagementsystem\\data\\bookings.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|solutionrelative:fitnessclubmanagementsystem\\data\\bookings.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|c:\\users\\ruaa\\source\\repos\\fitnessclubmanagementsystem\\fitnessclubmanagementsystem\\managementsystem\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|solutionrelative:fitnessclubmanagementsystem\\managementsystem\\filemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|c:\\users\\ruaa\\source\\repos\\fitnessclubmanagementsystem\\fitnessclubmanagementsystem\\data\\members.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|solutionrelative:fitnessclubmanagementsystem\\data\\members.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|c:\\users\\ruaa\\source\\repos\\fitnessclubmanagementsystem\\fitnessclubmanagementsystem\\data\\trainers.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|solutionrelative:fitnessclubmanagementsystem\\data\\trainers.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|c:\\users\\ruaa\\source\\repos\\fitnessclubmanagementsystem\\fitnessclubmanagementsystem\\managementsystem\\clubstaff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{233CDFC1-8C9D-4AE0-8771-948DD034C3B2}|FitnessClubManagementSystem\\FitnessClubManagementSystem.csproj|solutionrelative:fitnessclubmanagementsystem\\managementsystem\\clubstaff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,62 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TRAINERS.txt",
-              "DocumentMoniker": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\Data\\TRAINERS.txt",
-              "RelativeDocumentMoniker": "FitnessClubManagementSystem\\Data\\TRAINERS.txt",
-              "ToolTip": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\Data\\TRAINERS.txt",
-              "RelativeToolTip": "FitnessClubManagementSystem\\Data\\TRAINERS.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-11-02T21:17:55.832Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MEMBERS.txt",
-              "DocumentMoniker": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\Data\\MEMBERS.txt",
-              "RelativeDocumentMoniker": "FitnessClubManagementSystem\\Data\\MEMBERS.txt",
-              "ToolTip": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\Data\\MEMBERS.txt",
-              "RelativeToolTip": "FitnessClubManagementSystem\\Data\\MEMBERS.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-11-02T21:18:00.578Z",
-              "IsPinned": true,
+              "DocumentIndex": 0,
+              "Title": "clsMainScreen.cs",
+              "DocumentMoniker": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\Screens\\clsMainScreen.cs",
+              "RelativeDocumentMoniker": "FitnessClubManagementSystem\\Screens\\clsMainScreen.cs",
+              "ToolTip": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\Screens\\clsMainScreen.cs",
+              "RelativeToolTip": "FitnessClubManagementSystem\\Screens\\clsMainScreen.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-03T00:52:39.173Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "BOOKINGS.txt",
-              "DocumentMoniker": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\Data\\BOOKINGS.txt",
-              "RelativeDocumentMoniker": "FitnessClubManagementSystem\\Data\\BOOKINGS.txt",
-              "ToolTip": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\Data\\BOOKINGS.txt",
-              "RelativeToolTip": "FitnessClubManagementSystem\\Data\\BOOKINGS.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-11-02T21:18:04.654Z",
-              "IsPinned": true,
+              "Title": "FileManager.cs",
+              "DocumentMoniker": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\ManagementSystem\\FileManager.cs",
+              "RelativeDocumentMoniker": "FitnessClubManagementSystem\\ManagementSystem\\FileManager.cs",
+              "ToolTip": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\ManagementSystem\\FileManager.cs",
+              "RelativeToolTip": "FitnessClubManagementSystem\\ManagementSystem\\FileManager.cs",
+              "ViewState": "AgIAABoBAAAAAAAAAAAmwHABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-03T00:49:03.165Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ACTIVITIES.txt",
-              "DocumentMoniker": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\Data\\ACTIVITIES.txt",
-              "RelativeDocumentMoniker": "FitnessClubManagementSystem\\Data\\ACTIVITIES.txt",
-              "ToolTip": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\Data\\ACTIVITIES.txt",
-              "RelativeToolTip": "FitnessClubManagementSystem\\Data\\ACTIVITIES.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2026-11-02T21:18:07.785Z",
-              "IsPinned": true,
+              "DocumentIndex": 2,
+              "Title": "ClubStaff.cs",
+              "DocumentMoniker": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\ManagementSystem\\ClubStaff.cs",
+              "RelativeDocumentMoniker": "FitnessClubManagementSystem\\ManagementSystem\\ClubStaff.cs",
+              "ToolTip": "C:\\Users\\Ruaa\\source\\repos\\FitnessClubManagementSystem\\FitnessClubManagementSystem\\ManagementSystem\\ClubStaff.cs",
+              "RelativeToolTip": "FitnessClubManagementSystem\\ManagementSystem\\ClubStaff.cs",
+              "ViewState": "AgIAANsBAAAAAAAAAAAywAcAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-03T00:41:30.995Z",
               "EditorCaption": ""
             },
             {

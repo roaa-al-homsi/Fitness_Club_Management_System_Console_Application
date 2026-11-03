@@ -10,10 +10,13 @@ using System.Threading.Tasks;
 
 namespace FitnessClubManagementSystem.Screens
 {
+    // Handles the console user interface and main menu navigation.
     public class clsMainScreen
     {
+        //create an instance from FitnessClubSystem class to calling all methods that do all operations 
         FitnessClubSystem system = new FitnessClubSystem();
 
+        // Reads and validates the user's main menu selection.
         short _ReadMainMenuOption()
         {
             short Choice = 0;
@@ -23,7 +26,8 @@ namespace FitnessClubManagementSystem.Screens
             return Choice;
 
         }
-       
+
+        // Displays a formatted screen header with an optional subtitle.
         static void _DrawHeaderScreen(string Title, string SubTitle = " ")
         {
             Console.WriteLine("                                     **************************************");
@@ -83,54 +87,72 @@ namespace FitnessClubManagementSystem.Screens
 
             } while (choice != 12);
         }
+
+        // Displays all members by calling the corresponding system operation.
         void _ShowAllMembers()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL MEMBER SCREEN");
             system.ShowAllMembers();
 
         }
+
+        // Displays all activities.
         void _ShowAllActivities()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL ACTIVITIES SCREEN");
             system.ShowAllActivity();
         }
+
+        // Displays all trainers.
         void _ShowAllTrainers()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL TRAINERS SCREEN");
             system.ShowAllTrainers();
         }
+
+        // Displays all bookings.
         void _ShowAllBookings()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "VIEW ALL BOOKINGS SCREEN");
             system.ShowAllBookings();
         }
 
+        // Searches for a member by ID.
         void _FindMemberById()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "FIND A MEMBER SCREEN");
             system.FindMemberById();
         }
+
+        // Searches for an activity by ID.
         void _FindActivityById()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "FIND A ACTIVITY SCREEN");
             system.FindActivityById();
         }
 
+        // Opens the screen for adding a new member.
         void _AddMember()
         {
             _DrawHeaderScreen("Fitness Club Management System", "ADDING NEW MEMBER SCREEN");
             system.AddMember();
         }
+
+        // Opens the screen for adding a new activity.
         void _AddActivity()
         {
             _DrawHeaderScreen("Fitness Club Management System", "ADDING NEW ACTIVITY SCREEN");
             system.AddActivity();
         }
+
+        // Opens the screen for adding a new trainer.
         void _AddTrainer()
         {
             _DrawHeaderScreen("Fitness Club Management System", "ADDING NEW TRAINER SCREEN");
             system.AddTrainer();
         }
+
+        // Opens the screen for adding a new booking.
         void _AddBooking()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "ADD NEW BOOKING SCREEN");
@@ -138,18 +160,21 @@ namespace FitnessClubManagementSystem.Screens
 
         }
 
+        // Displays the projected monthly revenue calculated by the system.
         void _GetProjectedMonthlyRevenue()
         {
             _DrawHeaderScreen("FITNESS CLUB MANAGEMENT SYSTEM", "SHOW PROJECTED MONTHLY REVENUE SCREEN");
             Console.WriteLine($"Projected Monthly Revenue : {system.GetProjectedMonthlyRevenue()}");
 
         }
+
         static void _Exit()
         {
             Console.WriteLine("Exiting the program...");
             Environment.Exit(0);
         }
 
+        // Executes the operation selected by the user from the main menu.
         void _PerformMainMenuOptions(short Choice)
         {
             switch (Choice)

@@ -10,14 +10,18 @@ using System.Threading.Tasks;
 
 namespace FitnessClubManagementSystem.ManagementSystem
 {
+    // Handles reading and writing gym data using text files.
     public static class FileManager
     {
+        // File paths used to store the system data.
         const string MembersFile = @"Data\MEMBERS.txt";
         const string ActivitiesFile = @"Data\ACTIVITIES.txt";
         const string TrainersFile = @"Data\TRAINERS.txt";
         const string BookingsFile = @"Data\BOOKINGS.txt";
 
         /* Member */
+
+        // Converts a text record into the appropriate Member object.
         static Member _ConvertStLineToMemberObject(string stLine, char seperatore = ';')
         {
             string[] lineInMembersFile = stLine.Split(seperatore);
@@ -33,6 +37,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
         }
 
+        // Converts a Member object into a semicolon-separated text record.
         public static string ConvertMemberObjectToStLine(Member member, string seperator = ";")
         {
             string textObjectMember = " ";
@@ -108,6 +113,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             return localMembers;
         }
+
+        // Appends a new member record to the members file.
         public static bool SaveMember(string memberRecord)//Add member record to file.
         {
             StreamWriter fw = null;
@@ -133,7 +140,10 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 }
             }
         }
+
         /* Activity */
+
+        // Converts a text record into the appropriate Activity object.
         static Activity _ConvertStLineToActivityObject(string stLine, char seperatore = ';')
         {
             string[] lineInActivityFile = stLine.Split(seperatore);
@@ -202,6 +212,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             return localActivities;
         }
 
+        // Converts an Activity object into a text record according to its type.
         public static string ConvertActivityObjectToStLine(Activity activity, string seperator = ";")
         {
             string activityLine = "";
@@ -233,6 +244,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
         }
 
+        // Appends a new activity record to the activities file.
         public static bool SaveActivity(string activityRecord)
         {
             StreamWriter fw = null;
@@ -261,11 +273,14 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
 
         /* Trainers */
+
+        // Converts a text record into a Trainer object.
         static Trainer _ConvertStLineToTrainerObject(string stLine, char seperatore = ';')
         {
             string[] lineInTrainersFile = stLine.Split(seperatore);
             return new Trainer(Convert.ToInt32(lineInTrainersFile[0]), lineInTrainersFile[1], lineInTrainersFile[2], Convert.ToDouble(lineInTrainersFile[3]));
         }
+
         //Load Data From File To Array Trainers
         public static Trainer[] LoadTrainers()
         {
@@ -312,6 +327,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             return localTrainers;
         }
 
+        // Converts a Trainer object into a semicolon-separated text record.
         public static string ConvertTrainerObjectToStLine(Trainer trainer, char seperatore = ';')
         {
             string trainerLine = "";
@@ -321,6 +337,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
             trainerLine += trainer.Salary.ToString();
             return trainerLine;
         }
+
+        // Appends a new trainer record to the trainers file.
         public static bool SaveTrainer(string TrainerRecord)//Add new trainer to file.
         {
             StreamWriter fw = null;
@@ -349,22 +367,26 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
         /*BOOKING*/
 
+        // Converts a text record into a Booking object.
         static Booking _ConvertStLineToBookingObject(string stLine, char seperatore = ';')
         {
             string[] stObject = stLine.Split(';');
             return new Booking(Convert.ToInt32(stObject[0]), Convert.ToInt32(stObject[1]), Convert.ToInt32(stObject[2]), Convert.ToDateTime(stObject[3]), stObject[4]);
         }
-        public static string ConvertBookingObjectToStLine(Booking booking, char seperatore = ';')
+
+        // Converts a Booking object into a semicolon-separated text record.
+        public static string ConvertBookingObjectToStLine(Booking booking, char seperator = ';')
         {
             string StLBooking = "";
-            StLBooking = booking.Id.ToString() + seperatore;
-            StLBooking += booking.MemberId.ToString() + seperatore;
-            StLBooking += booking.ActivityId.ToString() + seperatore;
-            StLBooking += booking.Date.ToShortDateString() + seperatore;
+            StLBooking = booking.Id.ToString() + seperator;
+            StLBooking += booking.MemberId.ToString() + seperator;
+            StLBooking += booking.ActivityId.ToString() + seperator;
+            StLBooking += booking.Date.ToShortDateString() + seperator;
             StLBooking += booking.Status;
 
             return StLBooking;
         }
+
         //Load Data From File To Array Bookings
         public static Booking[] LoadBookings()
         {
@@ -410,6 +432,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             return localBookings;
         }
+
+        // Appends a new booking record to the bookings file.
         public static bool SaveBooking(string BookingRecord)//Add new Booking to file.
         {
             StreamWriter fw = null;

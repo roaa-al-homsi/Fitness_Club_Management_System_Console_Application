@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessClubManagementSystem.Core.Activities
 {
-    public class GroupClass:Activity
+    public class GroupClass: Activity    // Represents a group fitness class and inherits common properties from Activity.
     {
         public string InstructorName { get; set; }
         public string DifficultyLevel { get; set; }//Beginner  , Advanced
@@ -22,15 +22,12 @@ namespace FitnessClubManagementSystem.Core.Activities
             return 0;
 
         }
+       
         public override void PrintInfo()
         {
-            base.PrintInfo();
+            base.PrintInfo(); // Extends the base class information with group class details.
             Console.Write($"Type: {"GROUP CLASS",-20} | " + $"Instructor: {InstructorName,-15} | " + $"Difficulty: {DifficultyLevel,-10}");
         }
-
-
-
-
 
     }
 }

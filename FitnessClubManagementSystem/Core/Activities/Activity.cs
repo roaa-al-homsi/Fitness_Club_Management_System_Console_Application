@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessClubManagementSystem.Core.Activities
 {
-    public class Activity
+    public class Activity // Base class for all gym activities.
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -23,7 +23,7 @@ namespace FitnessClubManagementSystem.Core.Activities
             this.Capacity= capacity;
 
         }
-        public virtual double CalculateSessionCost()
+        public virtual double CalculateSessionCost() // Virtual method to calculate the cost of an activity session.
         {
             return 0;
 

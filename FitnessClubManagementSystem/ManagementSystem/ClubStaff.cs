@@ -5,15 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace FitnessClubManagementSystem.ManagementSystem
 {
+    // Handles gym staff operations related to members, activities, trainers, and bookings.
     public class ClubStaff
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
 
+        // References to the arrays managed by FitnessClubSystem.
         public Member[] Members;
         public Activity[] Activities;
         public Trainer[] Trainers;
@@ -31,6 +32,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Bookings = FitnessClubSystem.Bookings;
         }
 
+        // Refreshes array references after they are reloaded by FitnessClubSystem.
         public void UpdateArraysReferences()
         {
             Members = FitnessClubSystem.Members;
@@ -38,7 +40,9 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Trainers = FitnessClubSystem.Trainers;
             Bookings = FitnessClubSystem.Bookings;
         }
+
         /* Members */
+
         public void ShowAllMembers()
         {
             for (int i = 0; i < FitnessClubSystem.MemberCount; i++)
@@ -50,6 +54,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Console.WriteLine("                                       TOTAL MEMBER IN SYSTEM: " + FitnessClubSystem.MemberCount);
         }
 
+        // Reads member information and creates the appropriate member type.
         private Member _ReadInfoNewMember()
         {
 
@@ -130,6 +135,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
                     return null;
             }
         }
+
+        // Saves the new member to the file and updates the array if saving succeeds.
         public void AddMember()
         {
             if (FitnessClubSystem.MemberCount >= FitnessClubSystem.MaxMembers)
@@ -158,11 +165,13 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
 
         }
+
         public bool IsMemberExist(int Id)
         {
             Member member = _FindMember(Id);
             return (member != null);
         }
+
         private Member _FindMember(int id)//Find Member By Id
         {
             for (int i = 0; i <= FitnessClubSystem.MemberCount - 1; i++)
@@ -176,6 +185,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             return null;
         }
+
         private int _ReadIdMember()
         {
             int id = -1;
@@ -186,6 +196,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
             return id;
         }
+
         public void FindMemberById()
         {
             Console.WriteLine($"Please, Enter Id member : ");
@@ -224,6 +235,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Console.WriteLine("                                       TOTAL ACTIVITY IN SYSTEM: " + FitnessClubSystem.ActivityCount);
 
         }
+
+        // Reads activity details and creates the appropriate activity type.
         private Activity _ReadInfoNewActivity()
         {
             string type, name, instructorName, difficultyLevel = "";
@@ -320,6 +333,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
 
         }
+
+        // Saves the activity and updates the array after successful file storage.
         public void AddActivity()
         {
             if (FitnessClubSystem.ActivityCount >= FitnessClubSystem.MaxActivity)
@@ -369,6 +384,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Activity activity = _FindActivity(Id);
             return (activity != null);
         }
+
         private int _ReadIdActivity()
         {
             int id = 0;
@@ -379,6 +395,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
             return id;
         }
+
+        // Searches for an activity using its ID.
         private Activity _FindActivity(int ActivityId)
         {
             for (int i = 0; i < FitnessClubSystem.ActivityCount; i++)
@@ -390,6 +408,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
             return null;
         }
+
+        // Finds an activity by ID and displays its information.
         public void FindActivityById()
         {
             Console.WriteLine($"Please, Enter Id activity : ");
@@ -429,6 +449,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Console.WriteLine("                                       TOTAL TRAINERS IN SYSTEM: " + FitnessClubSystem.TrainerCount);
 
         }
+
+        // Reads trainer details and creates a new Trainer object.
         Trainer _ReadInfoTrainer()
         {
             string name, specialty = "";
@@ -450,6 +472,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
             return new Trainer(newId, name, specialty, salary);
         }
+
         int _ReadIdTrainer()
         {
             int trainerId = 0;
@@ -461,6 +484,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
             }
             return trainerId;
         }
+
+        // Saves the trainer to the file and adds it to the array if saving succeeds.
         public void AddTrainer()
         {
             if (FitnessClubSystem.TrainerCount >= FitnessClubSystem.MaxTrainers)
@@ -485,6 +510,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
         }
 
+        // Searches for a trainer using the specified ID.
         public Trainer FindTrainer(int Id)
         {
             for (int i = 0; i < FitnessClubSystem.TrainerCount; i++)
@@ -503,6 +529,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
         }
 
         /*BOOKINGS*/
+       
         public void ShowAllBookings()
         {
             for (int i = 0; i < FitnessClubSystem.BookingCount; i++)
@@ -516,6 +543,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
         }
 
+        // Reads booking details and validates the associated member and activity.
         Booking _ReadInfoBooking()
         {
             string status = "";
@@ -574,6 +602,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             return new Booking(newId, memberId, activityId, date, status);
         }
+
+        // Saves the booking to the file and updates the array if saving succeeds.
         public void AddBooking()
         {
             if (FitnessClubSystem.BookingCount >= FitnessClubSystem.MaxBookings)
