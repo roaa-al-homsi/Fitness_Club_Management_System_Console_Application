@@ -157,6 +157,8 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 Members[FitnessClubSystem.MemberCount] = NewMember;
                 ++FitnessClubSystem.MemberCount;
                 Console.WriteLine("Success Saving Member To File..");
+                Console.WriteLine($"Member saved with this Id {FitnessClubSystem.MemberCount}");
+                Console.WriteLine($"Monthly fee for a new member : {NewMember.CalculateMonthlyFee()}");
             }
             else
             {
