@@ -14,10 +14,14 @@ namespace FitnessClubManagementSystem.ManagementSystem
     public static class FileManager
     {
         // File paths used to store the system data.
-        const string MembersFile = @"Data\MEMBERS.txt";
-        const string ActivitiesFile = @"Data\ACTIVITIES.txt";
-        const string TrainersFile = @"Data\TRAINERS.txt";
-        const string BookingsFile = @"Data\BOOKINGS.txt";
+        // They are built from the folder of the running .exe (bin\Debug or bin\Release), not the current working
+        // directory, so the same Data folder is used however the program is started (Visual Studio, double-click, cmd).
+        // The csproj copies Data\*.txt into that folder on build (CopyToOutputDirectory = PreserveNewest).
+        static readonly string DataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
+        static readonly string MembersFile = Path.Combine(DataFolder, "MEMBERS.txt");
+        static readonly string ActivitiesFile = Path.Combine(DataFolder, "ACTIVITIES.txt");
+        static readonly string TrainersFile = Path.Combine(DataFolder, "TRAINERS.txt");
+        static readonly string BookingsFile = Path.Combine(DataFolder, "BOOKINGS.txt");
 
         /* Member */
 
