@@ -13,24 +13,22 @@ namespace FitnessClubManagementSystem.ManagementSystem
     // Handles reading and writing gym data using text files.
     public static class FileManager
     {
+
+        public static string rootPath = @"";
+         
         // File paths used to store the system data.
-        const string MembersFile = @"Data\MEMBERS.txt";
-        const string ActivitiesFile = @"Data\ACTIVITIES.txt";
-        const string TrainersFile = @"Data\TRAINERS.txt";
-        const string BookingsFile = @"Data\BOOKINGS.txt";
+        const string MembersFile = "Data\\MEMBERS.txt";
+        const string ActivitiesFile = "Data\\ACTIVITIES.txt";
+        const string TrainersFile = "Data\\TRAINERS.txt";
+        const string BookingsFile = "Data\\BOOKINGS.txt";
 
 
-        // They are built from the folder of the running .exe (bin\Debug or bin\Release), not the current working
-        // directory, so the same Data folder is used however the program is started (Visual Studio, double-click, cmd).
-        // The csproj copies Data\*.txt into that folder on build (CopyToOutputDirectory = PreserveNewest).
-        //static readonly string DataFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
-        //static readonly string MembersFile = Path.Combine(DataFolder, "MEMBERS.txt");
-        //static readonly string ActivitiesFile = Path.Combine(DataFolder, "ACTIVITIES.txt");
-        //static readonly string TrainersFile = Path.Combine(DataFolder, "TRAINERS.txt");
-        //static readonly string BookingsFile = Path.Combine(DataFolder, "BOOKINGS.txt");
-
-
-
+        private static string GetPathFile(string path)
+        {
+            return Path.Combine(rootPath, path);
+        }
+        
+     
         /* Member */
 
         // Converts a text record into the appropriate Member object.
@@ -87,7 +85,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fr = new StreamReader(MembersFile);
+                fr = new StreamReader(GetPathFile(MembersFile));
 
                 string line = fr.ReadLine();
                 FitnessClubSystem.MemberCount = 0;
@@ -134,7 +132,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fw = new StreamWriter(MembersFile, true);
+                fw = new StreamWriter(GetPathFile(MembersFile), true);
 
                 fw.WriteLine(memberRecord);
 
@@ -180,7 +178,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fr = new StreamReader(ActivitiesFile);
+                fr = new StreamReader(GetPathFile(ActivitiesFile));
 
                 string line = fr.ReadLine();
                 FitnessClubSystem.ActivityCount = 0;
@@ -264,7 +262,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fw = new StreamWriter(ActivitiesFile, true);
+                fw = new StreamWriter(GetPathFile(ActivitiesFile), true);
 
                 fw.WriteLine(activityRecord);
 
@@ -303,7 +301,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fr = new StreamReader(TrainersFile);
+                fr = new StreamReader(GetPathFile(TrainersFile));
 
                 string line = fr.ReadLine();
 
@@ -358,7 +356,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fw = new StreamWriter(TrainersFile, true);
+                fw = new StreamWriter(GetPathFile(TrainersFile), true);
 
                 fw.WriteLine(TrainerRecord);
 
@@ -409,7 +407,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fr = new StreamReader(BookingsFile);
+                fr = new StreamReader(GetPathFile(BookingsFile));
 
                 string line = fr.ReadLine();
 
@@ -453,7 +451,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             try
             {
-                fw = new StreamWriter(BookingsFile, true);
+                fw = new StreamWriter(GetPathFile(BookingsFile), true);
 
                 fw.WriteLine(BookingRecord);
 
