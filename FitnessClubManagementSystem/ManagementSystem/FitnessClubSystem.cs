@@ -193,13 +193,13 @@ namespace FitnessClubManagementSystem.Core
             _clubStaff.AddBooking();
         }
 
-        /**/
+        /*Calculate Monthly Fee For all members */
         public double GetProjectedMonthlyRevenue()
         {
             double monthlyRevenue = 0;
             for (int i = 0; i < MemberCount; i++)
             {
-                monthlyRevenue += Members[i].CalculateMonthlyFee();
+                monthlyRevenue += Members[i].CalculateMonthlyFee();//Member maybe is Standard or Premium and member calls printInfo , this is apply polymorphism
 
             }
             return monthlyRevenue;

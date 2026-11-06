@@ -2,3 +2,4 @@
 102;Maya Deeby;Cardio & Rehab;1400
 3;Mohammad;Cardio;1000
 4;Ahmad Homsi;Cardio;1000
+5;Mohammad;Cardio;500
