@@ -1,5 +1,6 @@
 ﻿using FitnessClubManagementSystem.Core;
 using FitnessClubManagementSystem.Core.Activities;
+using FitnessClubManagementSystem.Lib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,18 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Bookings = FitnessClubSystem.Bookings;
         }
 
+        // New IDs continue after the highest ID already loaded, so they never repeat an existing one
+        // (the files have gaps such as trainers 101, 102, 3, 4, and a malformed line may be skipped while loading).
+        private static int _NextId<T>(T[] items, int count, Func<T, int> getId)
+        {
+            int maxId = 0;
+            for (int i = 0; i < count; i++)
+            {
+                maxId = Math.Max(maxId, getId(items[i]));
+            }
+            return maxId + 1;
+        }
+
         /* Members */
 
         public void ShowAllMembers()
@@ -62,7 +75,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             int freezeDaysUsed, guestPasses = 0;
             bool hasPersonalTrainer = false;
-            int newId = FitnessClubSystem.MemberCount + 1;
+            int newId = _NextId(Members, FitnessClubSystem.MemberCount, member => member.Id);
 
             Console.WriteLine("What type of new member is it STANDARD OR PREMIUM [s | p]?");
             type = Console.ReadLine();
@@ -82,7 +95,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             Console.WriteLine("Enter join date for member (dd/MM/yyyy): ");
             string inputDate = Console.ReadLine();
 
-            while (!DateTime.TryParse(inputDate, out joinDate))
+            while (!clsInputValidate.TryParseDate(inputDate, out joinDate))
             {
                 Console.WriteLine("Invalid date! Please enter a valid date:");
                 inputDate = Console.ReadLine();
@@ -160,7 +173,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
                 ++FitnessClubSystem.MemberCount;
                 Console.WriteLine("Success Saving Member To File..");
                 //Print on console new Id for a new member and monthly fee for it .
-                Console.WriteLine($"Member saved with this Id {FitnessClubSystem.MemberCount}");
+                Console.WriteLine($"Member saved with this Id {NewMember.Id}");
                 Console.WriteLine($"Monthly fee for a new member : {NewMember.CalculateMonthlyFee()}");
             }
             else
@@ -245,7 +258,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
             string type, name, instructorName, difficultyLevel = "";
             int durationMinutes, capacity, trainerId = 0;
             double hourlyRate = 0;
-            int newId = FitnessClubSystem.ActivityCount + 1;
+            int newId = _NextId(Activities, FitnessClubSystem.ActivityCount, activity => activity.Id);
 
             Console.WriteLine("Enter type activity (Group or Personal Training) (g|pt) ?");
             type = Console.ReadLine();
@@ -323,7 +336,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
                     Console.WriteLine("Enter hourly rate  : ");
                     string inputHourlyRate = Console.ReadLine();
-                    while (!double.TryParse(inputHourlyRate, out hourlyRate) || hourlyRate <= 0)
+                    while (!clsInputValidate.TryParseDouble(inputHourlyRate, out hourlyRate) || hourlyRate <= 0)
                     {
                         Console.WriteLine("Invalid input!! , Please enter a correct input as number.");
                         inputHourlyRate = Console.ReadLine();
@@ -458,7 +471,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
         {
             string name, specialty = "";
             double salary = 0;
-            int newId = FitnessClubSystem.TrainerCount + 1;
+            int newId = _NextId(Trainers, FitnessClubSystem.TrainerCount, trainer => trainer.Id);
 
             Console.WriteLine("Enter trainer name : ");
             name = Console.ReadLine();
@@ -468,7 +481,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             Console.WriteLine("Enter salary: ");
             string inputSalary = Console.ReadLine();
-            while (!double.TryParse(inputSalary, out salary) || salary < 0)
+            while (!clsInputValidate.TryParseDouble(inputSalary, out salary) || salary < 0)
             {
                 Console.WriteLine("Invalid salary! Enter a non-negative number:");
                 inputSalary = Console.ReadLine();
@@ -551,7 +564,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
         {
             string status = "";
             DateTime date = DateTime.Now;
-            int newId = FitnessClubSystem.BookingCount + 1;
+            int newId = _NextId(Bookings, FitnessClubSystem.BookingCount, booking => booking.Id);
             int memberId, activityId = 0;
 
             Console.WriteLine("Enter Member ID: ");
@@ -588,7 +601,7 @@ namespace FitnessClubManagementSystem.ManagementSystem
 
             Console.WriteLine("Enter Date (dd/MM/yyyy):");
             string inputDate = Console.ReadLine();
-            while (!DateTime.TryParse(inputDate, out date))
+            while (!clsInputValidate.TryParseDate(inputDate, out date))
             {
                 Console.WriteLine("Invalid date! Please enter a valid date:");
                 inputDate = Console.ReadLine();
